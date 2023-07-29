@@ -1,11 +1,18 @@
 import { createGlobalStyle } from 'styled-components';
-import GilroyFont from '../fonts/Gilroy-ExtraBold.otf';  // Adjust path as necessary
+import GilroyFontExtraBold from '../fonts/Gilroy-ExtraBold.otf';  // Adjust path as necessary
+import GilroyFontLight from '../fonts/Gilroy-Light.otf';  // Adjust path as necessary
 
 const GlobalStyle = createGlobalStyle`
   @font-face {
     font-family: 'Gilroy';
-    src: url(${GilroyFont}) format('opentype');  // 'opentype' for .otf files
-    font-weight: 300;
+    src: url(${GilroyFontExtraBold}) format('opentype');  // 'opentype' for .otf files
+    font-weight: 800;  // Extra bold
+    font-style: normal;
+  }
+  @font-face {
+    font-family: 'Gilroy';
+    src: url(${GilroyFontLight}) format('opentype');  // 'opentype' for .otf files
+    font-weight: 300;  // Light
     font-style: normal;
   }
   html, body, #root {

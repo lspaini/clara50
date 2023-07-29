@@ -5,53 +5,52 @@ import RenderClarastrasse from '../images/render_clarastrasse.jpg';
 const LetterSize = '4.5rem'; // 72px replaced by 4.5rem
 
 export const LandingContainer = styled.div`
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100%;
-    width: 100%;
-    box-sizing: border-box;
-    max-width: 75rem;  // 1200px replaced by 75rem
-    height: 100vh;
-    padding: 3rem; // 48px replaced by 3rem
+display: flex;
+justify-content: center;
+align-items: center;
+width: 100%;
+height: 100vh;
+box-sizing: border-box;
+max-width: 75rem;
 `;
 
 
 export const LandingGrid = styled.div`
     display: grid;
     grid-template-areas: 
-    "lefttop righttop"
-    "lefttop righttop"
-    "lefttop righttop"
-    "leftbottom righttop"
-    "leftbottom righttop"
-    "leftbottom rightbottom";
-    grid-template-columns: 2fr 1.5fr; // 2 fractions for the left column, 1.5 fractions for the right column
-    grid-template-rows: repeat(6, 1fr); 
-    height: calc(90vh - 1.25rem);  // Adjusted for smaller screens
-    width: 90vw;   // Adjusted for smaller screens
-    gap: 0.3125rem;                  // Adjusted for smaller screens
+        "HeaderArea"
+        "ImageArea"
+        "NavigationArea"
+        "FooterArea";
+    grid-template-columns: 1fr; // Single column for mobile view
+    grid-template-rows: repeat(4, 1fr); 
+    height: calc(90vh - 1.25rem);
+    width: 90vw;
+    gap: 0.3125rem;
     box-sizing: border-box;
 
     @media (min-width: 48rem) { // 768px replaced by 48rem
         grid-template-areas: 
-        "lefttop lefttop righttop righttop"
-        "lefttop lefttop righttop righttop"
-        "lefttop lefttop righttop righttop"
-        "leftbottom leftbottom righttop righttop"
-        "leftbottom leftbottom righttop righttop"
-        "leftbottom leftbottom rightbottom rightbottom";
-        grid-template-columns: 2fr 2fr 1.5fr 1.5fr; // 2 fractions for the left columns, 1.5 fractions for the right columns
+            "HeaderArea HeaderArea ImageArea ImageArea"
+            "HeaderArea HeaderArea ImageArea ImageArea"
+            "HeaderArea HeaderArea ImageArea ImageArea"
+            "NavigationArea NavigationArea ImageArea ImageArea"
+            "NavigationArea NavigationArea ImageArea ImageArea"
+            "NavigationArea NavigationArea FooterArea FooterArea";
+        grid-template-columns: 2fr 2fr 1.5fr 1.5fr;
+        grid-template-rows: repeat(6, 1fr);
         height: 100%;
         width: 100%;
-        gap: 1.25rem; // 20px replaced by 1.25rem
+        gap: 1.25rem;
     }
 `;
 
 
 
+
+
 export const HeaderArea = styled.div`
-    grid-area: lefttop;
+    grid-area: HeaderArea;
     color: white;
     background-color: black;
     display: flex;
@@ -78,6 +77,7 @@ export const TitleLetter = styled.div`
     width: 4.5rem;
     height: 4.5rem;
     font-family: 'Gilroy', sans-serif;
+    font-weight: 800;
 
     @media (max-width: 64.5rem) { // 1036px replaced by 64.5rem
         font-size: calc(2rem + 2.5 * ((100vw - 20rem) / (64.5 - 20)));
@@ -88,7 +88,7 @@ export const TitleLetter = styled.div`
 
 
 export const NavigationArea = styled.div`
-    grid-area: leftbottom;
+    grid-area: NavigationArea;
     color: white;
     background-color: #000;
     display: flex;
@@ -109,19 +109,19 @@ export const NavLink = styled.a`
     text-decoration: none;
     margin-bottom: 0.625rem; // 10px replaced by 0.625rem
     font-family: 'Helvetica', sans-serif;
-    font-size: 2rem;
+    font-size: calc(1rem + (2 - 1) * ((100vw - 300px) / (1600 - 300))); // Scale between 1rem and 2rem between viewport widths of 300px and 1600px
 
     &:hover {
         color: gray;
     }
     @media (min-width: 74.875rem) { // 1198px replaced by 74.875rem
         margin-right: 1.25rem; // 20px replaced by 1.25rem
-        font-size: 1rem;
     }
 `;
 
+
 export const ImageArea = styled.div`
-    grid-area: righttop;
+    grid-area: ImageArea;
     background-image: url(${RenderClarastrasse});
     background-size: cover;  // makes sure the image covers the whole area
     background-position: center; // centers the image
@@ -129,7 +129,7 @@ export const ImageArea = styled.div`
 `;
 
 export const FooterArea = styled.div`
-    grid-area: rightbottom;
+    grid-area: FooterArea;
     color: #000;
     background-color: #fff;
     border: 0.625rem solid black; // 10px replaced by 0.625rem

@@ -1,11 +1,16 @@
 import React from 'react';
-import { LageContainer } from './lage.styles';
+import { LageContainer, LageTitleLetter } from './Lage.styles';
 
-export default function Lage() {
+function Lage() {
     return (
         <LageContainer>
-            <h1>Lage</h1>
-
+            {Array.from('Lage').map((letter, index) => (
+                <LageTitleLetter key={index}>
+                    {letter}
+                </LageTitleLetter>
+            ))}
         </LageContainer>
     );
 }
+
+export default Lage;
