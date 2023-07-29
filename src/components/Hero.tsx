@@ -23,7 +23,6 @@ export default function Hero() {
                     <NavLink href="#partner">Partner</NavLink>
                     <NavLink href="#faq">FAQ</NavLink>
                     <NavLink href="#kontakt">Kontakt</NavLink>
-                    <NavLink href="#newsletter">Newsletter</NavLink>
                 </NavigationArea>
                 <ImageArea />
                 <FooterArea>Coming 2025</FooterArea>

@@ -11,7 +11,12 @@ align-items: center;
 width: 100%;
 height: 100vh;
 box-sizing: border-box;
-max-width: 75rem;
+@media (min-width: 48rem) { // 768px replaced by 48rem
+    padding: 5%;
+}
+@media (min-width: 1440px) { // 1440px
+    padding: 5%;
+}
 `;
 
 
@@ -101,6 +106,7 @@ export const NavigationArea = styled.div`
     @media (min-width: 74.875rem) { // 1198px replaced by 74.875rem
         flex-direction: row; 
         align-items: flex-end;
+        justify-content: flex-start;
     }
 `;
 
