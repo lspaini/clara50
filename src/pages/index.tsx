@@ -3,7 +3,7 @@ import { PageProps } from "gatsby";
 import Hero from "../components/Hero";
 import GlobalStyle from '../styles/GlobalStyles';  // Adjust path as necessary
 import { styled } from "styled-components";
-import Lage from "../components/Lage";
+import Section from "../components/Section";
 
 const Main = styled.main`
   display: flex;
@@ -21,7 +21,12 @@ const IndexPage: React.FC<PageProps> = () => {
       <GlobalStyle />
       <Main>
         <Hero />
-        <Lage />
+        <Section title="Lage"/>
+        <Section title="Wohnungen"/>
+        <Section title="Gewerbe"/>
+        <Section title="Architektur"/>
+        <Section title="Über uns"/>
+        <Section title="Kontakt"/>
       </Main>
     </>
   )

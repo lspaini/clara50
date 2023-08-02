@@ -20,6 +20,9 @@ const GlobalStyle = createGlobalStyle`
     width: 100%;
     margin: 0;
     padding: 0;
+    max-width: 1920px;
+    display:grid;
+    align-items: center;
   }
 `
 export default GlobalStyle;

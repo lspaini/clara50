@@ -2,17 +2,16 @@
 import styled from 'styled-components';
 import RenderClarastrasse from '../images/render_clarastrasse.jpg';
 
-const LetterSize = '4.5rem'; // 72px replaced by 4.5rem
 
 export const LandingContainer = styled.div`
 display: flex;
 justify-content: center;
 align-items: center;
-width: 100%;
-height: 100vh;
 box-sizing: border-box;
+height: 100vh;
 @media (min-width: 48rem) { // 768px replaced by 48rem
     padding: 5%;
+    width: 80%;
 }
 @media (min-width: 1440px) { // 1440px
     padding: 5%;
@@ -78,18 +77,19 @@ export const TitleLetter = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: calc(4.5rem + (2 - 4.5) * ((100vw - 300px) / (1600 - 300))); // Scale between 2rem and 4.5rem between viewport widths of 300px and 1600px
-    width: 4.5rem;
-    height: 4.5rem;
+    font-size: calc(2rem + 1.5 * ((100vw - 20rem) / (64.5 - 20))); // Scale for screens smaller than 64.5rem
+    width: calc(2rem + 1.5 * ((100vw - 20rem) / (64.5 - 20)));
+    height: calc(2rem + 1.5 * ((100vw - 20rem) / (64.5 - 20)));
     font-family: 'Gilroy', sans-serif;
     font-weight: 800;
 
-    @media (max-width: 64.5rem) { // 1036px replaced by 64.5rem
-        font-size: calc(2rem + 2.5 * ((100vw - 20rem) / (64.5 - 20)));
-        width: calc(2rem + 2.5 * ((100vw - 20rem) / (64.5 - 20)));
-        height: calc(2rem + 2.5 * ((100vw - 20rem) / (64.5 - 20)));
+    @media (min-width: 64.5rem) { // Apply these styles for screens that are at least 64.5rem wide
+        font-size: calc(3.5rem + (2 - 3.5) * ((100vw - 300px) / (1600 - 300)));
+        width: 3.5rem;
+        height: 3.5rem;
     }
 `;
+
 
 
 export const NavigationArea = styled.div`
