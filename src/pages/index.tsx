@@ -4,6 +4,7 @@ import Hero from "../components/Hero";
 import GlobalStyle from '../styles/GlobalStyles';  // Adjust path as necessary
 import { styled } from "styled-components";
 import Section from "../components/Section";
+import { ImageBox, TextBox } from "../components/Section.styles";
 
 const Main = styled.main`
   display: flex;
@@ -21,7 +22,10 @@ const IndexPage: React.FC<PageProps> = () => {
       <GlobalStyle />
       <Main>
         <Hero />
-        <Section title="Lage"/>
+        <Section title="Lage">
+          <TextBox>Text here</TextBox>
+          <ImageBox />
+        </Section>
         <Section title="Wohnungen"/>
         <Section title="Gewerbe"/>
         <Section title="Architektur"/>

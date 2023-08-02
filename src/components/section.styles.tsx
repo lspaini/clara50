@@ -39,3 +39,28 @@ text-align: center; // Centers the letter within its grid cell
 text-transform: uppercase;
 `;
 
+export const BoxGrid = styled.div`
+    display: flex;
+    width: 100%;
+    margin-top: 8rem;
+    `;
+
+
+export const TextBox = styled.div`
+  background: #fff;
+  padding: 2rem;
+  z-index: 1; // To position above the lines
+  border: 1px solid #000;
+  width: 80%;
+  margin-left: 2rem;
+`;
+
+export const ImageBox = styled.div`
+  background-image: url('https://source.unsplash.com/random'); // Random image from Unsplash
+  background-size: cover;
+  background-position: center;
+  z-index: 1; // To position above the lines
+  border: 1px solid #000;
+  width: 80%;
+  margin-right: 2rem;
+`;
