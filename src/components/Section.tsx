@@ -15,7 +15,8 @@ const SectionContainer = styled.div`
     position: relative; // Relative positioning for the pseudo-element
     box-sizing: border-box;
     min-height: 100vh;
-    margin-top: 8rem;
+    background-color: #fff;
+    width: 100%;
     // max-width: 1920px;
 
     &::before {
@@ -34,7 +35,6 @@ const SectionContainer = styled.div`
       );
       z-index: 0; // Adjust the z-index to position behind the boxes
   }
-
 `;
 
 

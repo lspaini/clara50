@@ -16,7 +16,7 @@ const Main = styled.main`
   box-sizing: border-box;
   width: 100%;
   height: 100%;
-  background-color: #f5f5f5; /* light gray */
+  background-color: #fff;
 
 `;
 
@@ -30,13 +30,9 @@ const Boxes = styled.div`
   max-width: 50%;
   overflow: hidden;
   gap: 1rem; /* add gap property */
-
-  @media (min-width: 768px) {
-    flex-direction: row;
-  }
 `;
 
-const createPlantsForSection = () => {
+const createPlantsForSection = (emptyLines) => {
   const plantLines = [...Array(13).keys()]; // Array representing the 12 lines
   const plantIndexes = [...Array(9).keys()]; // Array representing the 9 plant images
 
@@ -50,14 +46,17 @@ const createPlantsForSection = () => {
     const plantIndex = plantIndexes[i % plantIndexes.length];
     const mirrored = i >= plantLines.length; // Mirror the plant on the second iteration
 
-    plants.push(
-      <Plant
-        key={i}
-        backgroundImage={plantImages[plantIndex]}
-        lineIndex={lineIndex}
-        mirrored={mirrored}
-      />
-    );
+    // Only add plant if it's not on an empty line
+    if (!emptyLines.includes(lineIndex)) {
+      plants.push(
+        <Plant
+          key={i}
+          backgroundImage={plantImages[plantIndex]}
+          lineIndex={lineIndex}
+          mirrored={mirrored}
+        />
+      );
+    }
   }
 
   return plants;
@@ -72,7 +71,7 @@ const IndexPage: React.FC<PageProps> = () => {
       <Main>
         <Hero />
         <Section title="Lage">
-        {/* {createPlantsForSection()} */}
+        {createPlantsForSection([0, 1, 2, 3, 4,5,6, 7, 8, 9, 10, 12])}
           <Boxes>
           <ContentBox>Unser Gebäude befindet sich in einer erstklassigen Lage, die eine perfekte Mischung aus städtischer Dynamik und beruhigender Natur bietet. Mit guter Anbindung an die öffentlichen Verkehrsmittel und umgeben von zahlreichen Annehmlichkeiten wie Einkaufszentren, Parks und Schulen, bietet die Lage des Gebäudes den Bewohnern alles, was sie für ein komfortables und bequemes Leben benötigen.</ContentBox>
           <ContentBox backgroundImage={renderClarastrasse}/>
