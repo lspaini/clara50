@@ -16,6 +16,8 @@ const Main = styled.main`
   box-sizing: border-box;
   width: 100%;
   height: 100%;
+  background-color: #f5f5f5; /* light gray */
+
 `;
 
 const Boxes = styled.div`
@@ -25,7 +27,10 @@ const Boxes = styled.div`
   height: 50%;
   position: absolute;
   margin-top: 12rem;
-  width: 100%;
+  max-width: 50%;
+  overflow: hidden;
+  gap: 1rem; /* add gap property */
+
   @media (min-width: 768px) {
     flex-direction: row;
   }
@@ -73,25 +78,6 @@ const IndexPage: React.FC<PageProps> = () => {
           <ContentBox backgroundImage={renderClarastrasse}/>
           </Boxes>
         </Section>
-        <Section title="Wohnungen">
-        {/* {createPlantsForSection()} */}
-          <Boxes>
-          <ContentBox backgroundImage={renderClarastrasse} />
-          <ContentBox>In unserem Bestreben, den Bewohnern eine breite Auswahl an Wohnmöglichkeiten zu bieten, haben wir die Anzahl der Wohnungen im Gebäude um 118% erhöht. Unser neuer Wohnraum bietet eine Vielzahl von Größenoptionen, von kompakten Studios für Singles oder Paare bis hin zu geräumigen Mehrzimmerwohnungen für Familien. Jede Wohnung ist sorgfältig gestaltet, um maximale Raumausnutzung und Komfort zu bieten.</ContentBox>
-          </Boxes>
-        </Section>
-        <Section title="Gewerbe">
-        {/* {createPlantsForSection()} */}
-        </Section>
-        <Section title="Architektur">
-          {/* {createPlantsForSection()} */}
-          </Section>
-        <Section title="Über uns">
-          {/* {createPlantsForSection()} */}
-          </Section>
-        <Section title="Kontakt">
-          {/* {createPlantsForSection()} */}
-          </Section>
       </Main>
     </>
   )

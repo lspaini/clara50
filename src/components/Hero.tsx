@@ -4,19 +4,20 @@ import RenderClarastrasse from '../images/render_clarastrasse.jpg';
 import { styled } from 'styled-components';
 
 
- const LandingContainer = styled.div`
-display: flex;
-justify-content: center;
-align-items: center;
-box-sizing: border-box;
-height: 100vh;
-@media (min-width: 48rem) { // 768px replaced by 48rem
+const LandingContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+  height: 100vh;
+  width: 100%;
+    @media (min-width: 48rem) {
     padding: 5%;
     width: 80%;
-}
-@media (min-width: 1440px) { // 1440px
+  }
+  @media (min-width: 1440px) {
     padding: 5%;
-}
+  }
 `;
 
 
@@ -54,17 +55,18 @@ height: 100vh;
 
 
 
- const HeaderArea = styled.div`
-    grid-area: HeaderArea;
-    color: white;
-    background-color: black;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: flex-start;
-    padding: 0.625rem; // 10px replaced by 0.625rem
-    text-transform: uppercase;
-    box-sizing: border-box;
+const HeaderArea = styled.div`
+  grid-area: HeaderArea;
+  color: #000;
+  background-color: #fff;
+  border: 1px solid #000; /* black */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  padding: 0.625rem;
+  text-transform: uppercase;
+  box-sizing: border-box;
 `;
 
  const Title = styled.div`
@@ -93,63 +95,62 @@ height: 100vh;
 
 
 
- const NavigationArea = styled.div`
-    grid-area: NavigationArea;
-    color: white;
-    background-color: #000;
-    display: flex;
-    flex-direction: column; 
-    align-items: flex-start;
-    justify-content: flex-end;
-    padding: 0.625rem; // 10px replaced by 0.625rem
-    box-sizing: border-box;
-
-    @media (min-width: 74.875rem) { // 1198px replaced by 74.875rem
-        flex-direction: row; 
-        align-items: flex-end;
-        justify-content: flex-start;
-    }
+const NavigationArea = styled.div`
+  grid-area: NavigationArea;
+  background-color: #fff;
+  border: 1px solid #000;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-end;
+  padding: 0.625rem;
+  box-sizing: border-box;
+  @media (min-width: 74.875rem) {
+    flex-direction: row;
+    align-items: flex-end;
+    justify-content: flex-start;
+  }
 `;
 
- const NavLink = styled.a`
-    color: white;
-    text-decoration: none;
-    margin-bottom: 0.625rem; // 10px replaced by 0.625rem
-    font-family: 'Helvetica', sans-serif;
-    font-size: calc(1rem + (2 - 1) * ((100vw - 300px) / (1600 - 300))); // Scale between 1rem and 2rem between viewport widths of 300px and 1600px
-
-    &:hover {
-        color: gray;
-    }
-    @media (min-width: 74.875rem) { // 1198px replaced by 74.875rem
-        margin-right: 1.25rem; // 20px replaced by 1.25rem
-    }
+const NavLink = styled.a`
+  color: #000;
+  text-decoration: none;
+  margin-bottom: 0.625rem;
+  font-family: 'Helvetica', sans-serif;
+  font-size: calc(1rem + (2 - 1) * ((100vw - 300px) / (1600 - 300)));
+  &:hover {
+    color: #666; /* dark gray */
+  }
+  @media (min-width: 74.875rem) {
+    margin-right: 1.25rem;
+  }
 `;
 
 
  const ImageArea = styled.div`
     grid-area: ImageArea;
     background-image: url(${RenderClarastrasse});
-    background-size: cover;  // makes sure the image covers the whole area
-    background-position: center; // centers the image
+    background-size: 200%; 
+    background-position: center;
     box-sizing: border-box;
+    border: 1px solid #000;
 `;
 
- const FooterArea = styled.div`
-    grid-area: FooterArea;
-    color: #000;
-    background-color: #fff;
-    border: 0.625rem solid black; // 10px replaced by 0.625rem
-    box-sizing: border-box;
-    font-family: 'Gilroy', sans-serif;
-    font-size: calc(2.5rem + (1 - 2.5) * ((100vw - 300px) / (1600 - 300))); // Scale between 1rem and 2.5rem between viewport widths of 300px and 1600px
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    @media (max-width: 64.5rem) { // 1036px replaced by 64.5rem
-        font-size: calc(1rem + 1.5 * ((100vw - 20rem) / (64.5 - 20)));
-    }
+const FooterArea = styled.div`
+  grid-area: FooterArea;
+  color: #000;
+  background-color: #fff;
+  border: 1px solid #000;
+  box-sizing: border-box;
+  font-family: 'Gilroy', sans-serif;
+  font-weight: 200;
+  font-size: calc(1.5rem + (1 - 2.5) * ((100vw - 300px) / (1600 - 300)));
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  @media (max-width: 64.5rem) {
+    font-size: calc(1rem + 1.5 * ((100vw - 20rem) / (64.5 - 20)));
+  }
 `;
 
 export default function Hero() {

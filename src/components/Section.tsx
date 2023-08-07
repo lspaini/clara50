@@ -13,13 +13,10 @@ const SectionContainer = styled.div`
     grid-template-columns: repeat(13, 1fr); // Divide container into 13 columns
     grid-gap: 1px;
     position: relative; // Relative positioning for the pseudo-element
-    min-height: 100%;
-    width: 100%;
     box-sizing: border-box;
     min-height: 100vh;
     margin-top: 8rem;
-    margin-bottom: 8rem;
-    max-width: 1920px;
+    // max-width: 1920px;
 
     &::before {
       content: '';
@@ -29,12 +26,12 @@ const SectionContainer = styled.div`
       right: 0;
       bottom: 0;
       background: repeating-linear-gradient(
-                    to right,
-                    #CDCDCD 0,
-                    #CDCDCD 0.0769%,
-                    transparent 0.0769%,
-                    transparent 7.6923%
-                  );
+        to right,
+        #CDCDCD 0,
+        #CDCDCD 0.0769%,
+        transparent 0.0769%,
+        transparent 7.6923%
+      );
       z-index: 0; // Adjust the z-index to position behind the boxes
   }
 
