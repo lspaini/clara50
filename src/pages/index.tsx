@@ -8,6 +8,22 @@ import Plant, { plantImages } from "../components/Plant";
 import ContentBox from "../components/ContentBox";
 import renderClarastrasse from "../images/render_clarastrasse.jpg";
 
+const BackgroundLines = styled.div`
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: repeating-linear-gradient(
+    to right,
+    #CDCDCD 0,
+    #CDCDCD 0.0769%,
+    transparent 0.0769%,
+    transparent 7.6923%
+  );
+`;
+
 const Main = styled.main`
   display: flex;
   flex-direction: column;
@@ -16,20 +32,16 @@ const Main = styled.main`
   box-sizing: border-box;
   width: 100%;
   height: 100%;
-  background-color: #fff;
-
+  background-color: #DCD4C9;
+  position: relative;
 `;
 
 const Boxes = styled.div`
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   box-sizing: border-box;
-  height: 50%;
-  position: absolute;
-  margin-top: 12rem;
-  max-width: 50%;
-  overflow: hidden;
-  gap: 1rem; /* add gap property */
+  gap: 1rem;
+  width: 100%;
 `;
 
 const createPlantsForSection = (emptyLines) => {
@@ -47,7 +59,7 @@ const createPlantsForSection = (emptyLines) => {
     const mirrored = i >= plantLines.length; // Mirror the plant on the second iteration
 
     // Only add plant if it's not on an empty line
-    if (!emptyLines.includes(lineIndex)) {
+    if (emptyLines.includes(lineIndex)) {
       plants.push(
         <Plant
           key={i}
@@ -69,12 +81,13 @@ const IndexPage: React.FC<PageProps> = () => {
     <>
       <GlobalStyle />
       <Main>
+      {/* <BackgroundLines /> */}
+        {/* {createPlantsForSection([0,1,2,11,12])} */}
         <Hero />
         <Section title="Lage">
-        {createPlantsForSection([0, 1, 2, 3, 4,5,6, 7, 8, 9, 10, 12])}
           <Boxes>
-          <ContentBox>Unser Gebäude befindet sich in einer erstklassigen Lage, die eine perfekte Mischung aus städtischer Dynamik und beruhigender Natur bietet. Mit guter Anbindung an die öffentlichen Verkehrsmittel und umgeben von zahlreichen Annehmlichkeiten wie Einkaufszentren, Parks und Schulen, bietet die Lage des Gebäudes den Bewohnern alles, was sie für ein komfortables und bequemes Leben benötigen.</ContentBox>
-          <ContentBox backgroundImage={renderClarastrasse}/>
+            <ContentBox>Unser Gebäude befindet sich in einer erstklassigen Lage, die eine perfekte Mischung aus städtischer Dynamik und beruhigender Natur bietet. Mit guter Anbindung an die öffentlichen Verkehrsmittel und umgeben von zahlreichen Annehmlichkeiten wie Einkaufszentren, Parks und Schulen, bietet die Lage des Gebäudes den Bewohnern alles, was sie für ein komfortables und bequemes Leben benötigen.</ContentBox>
+            <ContentBox backgroundImage={renderClarastrasse}/>
           </Boxes>
         </Section>
       </Main>
@@ -83,4 +96,4 @@ const IndexPage: React.FC<PageProps> = () => {
 }
 
 export default IndexPage;
-export const Head: React.FC = () => <title>Clara 50</title>
+export const Head: React.FC = () => <title>Clara fifty</title>

@@ -13,18 +13,14 @@ const LandingContainer = styled.div`
   min-height: 100vh;
   margin-bottom: 6rem;
   width: 100%;
-  background-color: #fff;
+  z-index: 1;
     @media (min-width: 48rem) {
-      padding-left: 10%;
+    padding-left: 10%;
     padding-right: 10%;
-    padding-top: 2%;
-    padding-bottom: 2%;
   }
   @media (min-width: 1440px) {
     padding-left: 20%;
     padding-right: 20%;
-    padding-top: 2%;
-    padding-bottom: 2%;
   }
 `;
 
@@ -61,10 +57,10 @@ const LandingContainer = styled.div`
 
 const BaseArea = styled.div`
   box-sizing: border-box;
-  background-color: #000;
   box-shadow: 0px 3px 12px rgba(0, 0, 0, 0.1);
   padding: 1.5rem;
   color: #fff;
+  background-color: #4F644E;
 `;
 
 const HeaderArea = styled(BaseArea)`
@@ -74,7 +70,7 @@ const HeaderArea = styled(BaseArea)`
   justify-content: flex-start;
   align-items: flex-start;
   text-transform: uppercase;
-  border-radius: 2rem 0 0 0;
+  border-radius: 1rem 0 0 0;
 `;
 
 const NavigationArea = styled(BaseArea)`
@@ -83,16 +79,16 @@ const NavigationArea = styled(BaseArea)`
   flex-direction: column;
   align-items: flex-start;
   justify-content: flex-end;
-  border-radius: 0 0 0 2rem;
+  border-radius: 0 0 0 1rem;
 `;
 
 
 const ImageArea = styled(BaseArea)`
   grid-area: ImageArea;
   background-image: url(${RenderClarastrasse});
-  background-size: 200%;
+  background-size: 150%;
   background-position: center;
-  border-radius: 0 2rem 0 0;
+  border-radius: 0 1rem 0 0;
   height: 30rem;
 `;
 
@@ -104,7 +100,7 @@ const FooterArea = styled(BaseArea)`
   display: flex;
   justify-content: center;
   align-items: center;
-  border-radius: 0 0 2rem 0;
+  border-radius: 0 0 1rem 0;
   
   @media (max-width: 64.5rem) {
     font-size: calc(1rem + 1.5 * ((100vw - 20rem) / (64.5 - 20)));
@@ -141,8 +137,9 @@ const NavLink = styled.a`
   margin-bottom: 0.625rem;
   font-family: 'Helvetica', sans-serif;
   font-size: calc(1.25rem + (2 - 1) * ((100vw - 300px) / (1600 - 300)));
+  color: #fff; // Dark blue color for high contrast against light background
   &:hover {
-    color: #666; /* dark gray */
+    color: #CC9A6A;
   }
   @media (min-width: 74.875rem) {
     margin-right: 1.25rem;

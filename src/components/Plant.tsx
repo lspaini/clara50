@@ -48,14 +48,12 @@ interface PlantProps {
 
 const Plant = styled.div<PlantProps>`
   position: absolute;
-  top: 8rem;
   background: url(${props => props.backgroundImage});
   background-size: 100%;
   background-repeat: no-repeat;
   height: 100%;
   width: 5%;
   left: ${props => linePositions[props.lineIndex] || "0%"};
-  transform: ${props => (props.mirrored ? "scaleX(-1)" : "none")};
 `;
 
 
