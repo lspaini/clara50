@@ -53,7 +53,9 @@ const Plant = styled.div<PlantProps>`
   background-repeat: no-repeat;
   height: 100%;
   width: 5%;
+  top: 0;
   left: ${props => linePositions[props.lineIndex] || "0%"};
+  z-index: 0;
 `;
 
 

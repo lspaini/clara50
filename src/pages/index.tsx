@@ -4,19 +4,19 @@ import Hero from "../components/Hero";
 import GlobalStyle from '../styles/GlobalStyles';  // Adjust path as necessary
 import { styled } from "styled-components";
 import Section from "../components/Section";
-import Plant, { plantImages } from "../components/Plant";
+// import Plant, { plantImages } from "../components/Plant";
 import ContentBox from "../components/ContentBox";
 import renderClarastrasse from "../images/render_clarastrasse.jpg";
 import renderClarahof from "../images/CAM4b_copia_2.jpg";
 import renderGastro from "../images/CAM3_copia_2.jpg";
 
-const Background = styled.div`
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-`;
+// const Background = styled.div`
+//   position: absolute;
+//   top: 0;
+//   left: 0;
+//   right: 0;
+//   bottom: 0;
+// `;
 
 const Main = styled.main`
   display: flex;
@@ -74,18 +74,18 @@ const IndexPage: React.FC<PageProps> = () => {
     <>
       <GlobalStyle />
       <Main>
-      <Background />
-        {/* {createPlantsForSection([0,1,2,11,12])} */}
+      {/* <Background /> */}
         <Hero />
         <Section title="Lage" bgcolor="#FEFAE0">
+        {/* {createPlantsForSection([1,12])} */}
           <Boxes>
             <ContentBox>Unser Gebäude befindet sich in einer erstklassigen Lage, die eine perfekte Mischung aus städtischer Dynamik und beruhigender Natur bietet. Mit guter Anbindung an die öffentlichen Verkehrsmittel und umgeben von zahlreichen Annehmlichkeiten wie Einkaufszentren, Parks und Schulen, bietet die Lage des Gebäudes den Bewohnern alles, was sie für ein komfortables und bequemes Leben benötigen.</ContentBox>
-            <ContentBox backgroundImage={renderClarastrasse}/>
+            <ContentBox backgroundimage={renderClarastrasse}/>
           </Boxes>
         </Section>
         <Section title="Wohnungen" bgcolor="#FAEDCD">
           <Boxes>
-            <ContentBox backgroundImage={renderClarahof} />
+            <ContentBox backgroundimage={renderClarahof} />
             <ContentBox>In unserem Bestreben, den Bewohnern eine breite Auswahl an Wohnmöglichkeiten zu bieten, haben wir die Anzahl der Wohnungen im Gebäude um 118% erhöht. Unser neuer Wohnraum bietet eine Vielzahl von Größenoptionen, von kompakten Studios für Singles oder Paare bis hin zu geräumigen Mehrzimmerwohnungen für Familien. Jede Wohnung ist sorgfältig gestaltet, um maximale Raumausnutzung und Komfort zu bieten.</ContentBox>
           </Boxes>
         </Section>
@@ -96,7 +96,37 @@ const IndexPage: React.FC<PageProps> = () => {
 Der Co-Working Space bietet flexible Arbeitsbereiche für moderne Berufstätige, während unsere gastronomischen Einrichtungen eine Vielzahl an Geschmäckern bedienen und gleichzeitig als soziale Treffpunkte dienen.
 
 Die Galerie fördert lokale Kunst und bietet Inspiration, und der Bandraum bringt Musikfreunde zusammen und unterstützt eine pulsierende Musikszene.</ContentBox>
-            <ContentBox backgroundImage={renderGastro}/>
+            <ContentBox backgroundimage={renderGastro}/>
+          </Boxes>
+        </Section>
+        <Section title="Architektur" bgcolor="#CCD5AE">
+          <Boxes>
+            <ContentBox backgroundimage={renderGastro}/>
+            <ContentBox>Unser Gebäude kombiniert auf effiziente Weise vielseitige Umgebungen: Co-Working, Gastronomie, Galerie und Bandraum.
+
+Der Co-Working Space bietet flexible Arbeitsbereiche für moderne Berufstätige, während unsere gastronomischen Einrichtungen eine Vielzahl an Geschmäckern bedienen und gleichzeitig als soziale Treffpunkte dienen.
+
+Die Galerie fördert lokale Kunst und bietet Inspiration, und der Bandraum bringt Musikfreunde zusammen und unterstützt eine pulsierende Musikszene.</ContentBox>
+          </Boxes>
+        </Section>
+        <Section title="Über uns" bgcolor="#FEFAE0">
+          <Boxes>
+            <ContentBox>Unser Gebäude kombiniert auf effiziente Weise vielseitige Umgebungen: Co-Working, Gastronomie, Galerie und Bandraum.
+
+Der Co-Working Space bietet flexible Arbeitsbereiche für moderne Berufstätige, während unsere gastronomischen Einrichtungen eine Vielzahl an Geschmäckern bedienen und gleichzeitig als soziale Treffpunkte dienen.
+
+Die Galerie fördert lokale Kunst und bietet Inspiration, und der Bandraum bringt Musikfreunde zusammen und unterstützt eine pulsierende Musikszene.</ContentBox>
+            <ContentBox backgroundimage={renderGastro}/>
+          </Boxes>
+        </Section>
+        <Section title="Kontakt" bgcolor="#D4A373">
+          <Boxes>
+            <ContentBox>Unser Gebäude kombiniert auf effiziente Weise vielseitige Umgebungen: Co-Working, Gastronomie, Galerie und Bandraum.
+
+Der Co-Working Space bietet flexible Arbeitsbereiche für moderne Berufstätige, während unsere gastronomischen Einrichtungen eine Vielzahl an Geschmäckern bedienen und gleichzeitig als soziale Treffpunkte dienen.
+
+Die Galerie fördert lokale Kunst und bietet Inspiration, und der Bandraum bringt Musikfreunde zusammen und unterstützt eine pulsierende Musikszene.</ContentBox>
+            <ContentBox backgroundimage={renderGastro}/>
           </Boxes>
         </Section>
       </Main>
