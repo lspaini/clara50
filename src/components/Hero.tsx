@@ -57,10 +57,9 @@ const LandingContainer = styled.div`
 
 const BaseArea = styled.div`
   box-sizing: border-box;
-  box-shadow: 0px 3px 12px rgba(0, 0, 0, 0.1);
   padding: 1.5rem;
-  color: #fff;
-  background-color: #4F644E;
+  color: #000;
+  border: 1px solid #000;
 `;
 
 const HeaderArea = styled(BaseArea)`
@@ -96,14 +95,16 @@ const FooterArea = styled(BaseArea)`
   grid-area: FooterArea;
   font-family: 'Gilroy', sans-serif;
   font-weight: 200;
-  font-size: calc(1.5rem + (1 - 2.5) * ((100vw - 300px) / (1600 - 300)));
+  font-size: calc(1.25rem + (2 - 1) * ((100vw - 300px) / (1600 - 300)));
   display: flex;
   justify-content: center;
   align-items: center;
   border-radius: 0 0 1rem 0;
+  background: #000;
+  color: #fff;
   
   @media (max-width: 64.5rem) {
-    font-size: calc(1rem + 1.5 * ((100vw - 20rem) / (64.5 - 20)));
+    font-size: calc(1.25rem + (2 - 1) * ((100vw - 300px) / (1600 - 300)));
   }
 `;
 
@@ -137,7 +138,8 @@ const NavLink = styled.a`
   margin-bottom: 0.625rem;
   font-family: 'Helvetica', sans-serif;
   font-size: calc(1.25rem + (2 - 1) * ((100vw - 300px) / (1600 - 300)));
-  color: #fff; // Dark blue color for high contrast against light background
+  color: #000;
+  font-family: 'Gilroy', sans-serif;
   &:hover {
     color: #CC9A6A;
   }

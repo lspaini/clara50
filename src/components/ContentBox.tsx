@@ -10,10 +10,11 @@ const StyledContentBox = styled.div<ContentBoxProps>`
 background-image: ${props => props.backgroundImage ? `url(${props.backgroundImage})` : 'none'}; 
 background-size: cover;
 background-position: center;
-background-color: ${props => props.backgroundImage ? 'transparent' : '#fff'}; // Conditionally set the background color
 padding: 2rem;
 border: 1px solid #000;
 width: 100%;
+font: 1rem/1.5 'Gilroy', sans-serif;
+height: 50vh;
 `;
 
 const ContentBox: React.FC<ContentBoxProps> = ({ backgroundImage, children }) => {
