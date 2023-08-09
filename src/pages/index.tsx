@@ -3,20 +3,24 @@ import { PageProps } from "gatsby";
 import Hero from "../components/Hero";
 import GlobalStyle from '../styles/GlobalStyles';  // Adjust path as necessary
 import { styled } from "styled-components";
-import Section from "../components/Section";
-// import Plant, { plantImages } from "../components/Plant";
+import Section, { Boxes } from "../components/Section";
 import ContentBox from "../components/ContentBox";
 import renderClarastrasse from "../images/render_clarastrasse.jpg";
 import renderClarahof from "../images/CAM4b_copia_2.jpg";
 import renderGastro from "../images/CAM3_copia_2.jpg";
+import Footer from "../components/Footer";
+import partner1 from "../images/partner/perita.svg";
+import partner2 from "../images/partner/benarici.png";
+import partner3 from "../images/partner/durable.png";
+import partner4 from "../images/partner/gt.png";
+import partner5 from "../images/partner/garden.png";
+import partner6 from "../images/partner/eitel.png";
+import Partners from "../components/Partners";
 
-// const Background = styled.div`
-//   position: absolute;
-//   top: 0;
-//   left: 0;
-//   right: 0;
-//   bottom: 0;
-// `;
+const partnerLogos = [
+  partner1, partner2, partner3, partner4, partner5, partner6
+];
+
 
 const Main = styled.main`
   display: flex;
@@ -26,46 +30,9 @@ const Main = styled.main`
   box-sizing: border-box;
   width: 100%;
   height: 100%;
-  background-color: #CCD5AE;
 `;
 
-const Boxes = styled.div`
-  display: flex;
-  flex-direction: row;
-  box-sizing: border-box;
-  gap: 1rem;
-  width: 90%;
-`;
 
-// const createPlantsForSection = (emptyLines) => {
-//   const plantLines = [...Array(13).keys()]; // Array representing the 12 lines
-//   const plantIndexes = [...Array(9).keys()]; // Array representing the 9 plant images
-
-//   // Shuffle the plantIndexes to randomize the plant images
-//   plantIndexes.sort(() => Math.random() - 0.5);
-
-//   // Create plants by pairing lines and plant images, looping through lines twice
-//   const plants = [];
-//   for (let i = 0; i < plantLines.length * 2; i++) {
-//     const lineIndex = i % plantLines.length;
-//     const plantIndex = plantIndexes[i % plantIndexes.length];
-//     const mirrored = i >= plantLines.length; // Mirror the plant on the second iteration
-
-//     // Only add plant if it's not on an empty line
-//     if (emptyLines.includes(lineIndex)) {
-//       plants.push(
-//         <Plant
-//           key={i}
-//           backgroundImage={plantImages[plantIndex]}
-//           lineIndex={lineIndex}
-//           mirrored={mirrored}
-//         />
-//       );
-//     }
-//   }
-
-//   return plants;
-// };
 
 
 
@@ -74,61 +41,65 @@ const IndexPage: React.FC<PageProps> = () => {
     <>
       <GlobalStyle />
       <Main>
-      {/* <Background /> */}
         <Hero />
-        <Section title="Lage" bgcolor="#FEFAE0">
-        {/* {createPlantsForSection([1,12])} */}
+        <Section title="Projekt" bgcolor="#f8f6f2">
           <Boxes>
-            <ContentBox>Unser Gebäude befindet sich in einer erstklassigen Lage, die eine perfekte Mischung aus städtischer Dynamik und beruhigender Natur bietet. Mit guter Anbindung an die öffentlichen Verkehrsmittel und umgeben von zahlreichen Annehmlichkeiten wie Einkaufszentren, Parks und Schulen, bietet die Lage des Gebäudes den Bewohnern alles, was sie für ein komfortables und bequemes Leben benötigen.</ContentBox>
+            <ContentBox> <h2>Lage</h2>Unser Gebäude befindet sich in einer erstklassigen Lage, die eine perfekte Mischung aus städtischer Dynamik und beruhigender Natur bietet. Mit guter Anbindung an die öffentlichen Verkehrsmittel und umgeben von zahlreichen Annehmlichkeiten wie Einkaufszentren, Parks und Schulen, bietet die Lage des Gebäudes den Bewohnern alles, was sie für ein komfortables und bequemes Leben benötigen.</ContentBox>
             <ContentBox backgroundimage={renderClarastrasse}/>
           </Boxes>
-        </Section>
-        <Section title="Wohnungen" bgcolor="#FAEDCD">
           <Boxes>
             <ContentBox backgroundimage={renderClarahof} />
-            <ContentBox>In unserem Bestreben, den Bewohnern eine breite Auswahl an Wohnmöglichkeiten zu bieten, haben wir die Anzahl der Wohnungen im Gebäude um 118% erhöht. Unser neuer Wohnraum bietet eine Vielzahl von Größenoptionen, von kompakten Studios für Singles oder Paare bis hin zu geräumigen Mehrzimmerwohnungen für Familien. Jede Wohnung ist sorgfältig gestaltet, um maximale Raumausnutzung und Komfort zu bieten.</ContentBox>
+            <ContentBox><h2>Wohnungen</h2> In unserem Bestreben, den Bewohnern eine breite Auswahl an Wohnmöglichkeiten zu bieten, haben wir die Anzahl der Wohnungen im Gebäude um 118% erhöht. Unser neuer Wohnraum bietet eine Vielzahl von Größenoptionen, von kompakten Studios für Singles oder Paare bis hin zu geräumigen Mehrzimmerwohnungen für Familien. Jede Wohnung ist sorgfältig gestaltet, um maximale Raumausnutzung und Komfort zu bieten.</ContentBox>
           </Boxes>
-        </Section>
-        <Section title="Gewerbe" bgcolor="#E9EDC9">
           <Boxes>
-            <ContentBox>Unser Gebäude kombiniert auf effiziente Weise vielseitige Umgebungen: Co-Working, Gastronomie, Galerie und Bandraum.
+            <ContentBox><h2>Coworking, Gastro, Bandraum</h2><p>Unser Gebäude kombiniert auf effiziente Weise vielseitige Umgebungen: Co-Working, Gastronomie, Galerie und Bandraum.
 
 Der Co-Working Space bietet flexible Arbeitsbereiche für moderne Berufstätige, während unsere gastronomischen Einrichtungen eine Vielzahl an Geschmäckern bedienen und gleichzeitig als soziale Treffpunkte dienen.
 
-Die Galerie fördert lokale Kunst und bietet Inspiration, und der Bandraum bringt Musikfreunde zusammen und unterstützt eine pulsierende Musikszene.</ContentBox>
+Die Galerie fördert lokale Kunst und bietet Inspiration, und der Bandraum bringt Musikfreunde zusammen und unterstützt eine pulsierende Musikszene.</p></ContentBox>
             <ContentBox backgroundimage={renderGastro}/>
           </Boxes>
         </Section>
-        <Section title="Architektur" bgcolor="#CCD5AE">
+        <Section title="Architektur" bgcolor="#f8e8b5">
           <Boxes>
             <ContentBox backgroundimage={renderGastro}/>
-            <ContentBox>Unser Gebäude kombiniert auf effiziente Weise vielseitige Umgebungen: Co-Working, Gastronomie, Galerie und Bandraum.
+            <ContentBox><p>Unser Gebäude kombiniert auf effiziente Weise vielseitige Umgebungen: Co-Working, Gastronomie, Galerie und Bandraum.
 
 Der Co-Working Space bietet flexible Arbeitsbereiche für moderne Berufstätige, während unsere gastronomischen Einrichtungen eine Vielzahl an Geschmäckern bedienen und gleichzeitig als soziale Treffpunkte dienen.
 
-Die Galerie fördert lokale Kunst und bietet Inspiration, und der Bandraum bringt Musikfreunde zusammen und unterstützt eine pulsierende Musikszene.</ContentBox>
+Die Galerie fördert lokale Kunst und bietet Inspiration, und der Bandraum bringt Musikfreunde zusammen und unterstützt eine pulsierende Musikszene.</p></ContentBox>
           </Boxes>
         </Section>
-        <Section title="Über uns" bgcolor="#FEFAE0">
+        <Section title="FAQ" bgcolor="#f8f6f2">
           <Boxes>
-            <ContentBox>Unser Gebäude kombiniert auf effiziente Weise vielseitige Umgebungen: Co-Working, Gastronomie, Galerie und Bandraum.
+          </Boxes>
+        </Section>
+        <Section title="Partner" bgcolor="#f8e8b5">
+          <Boxes>
+          <Partners logos={partnerLogos} />
+          </Boxes>
+        </Section>
+        <Section title="Über uns" bgcolor="#f8f6f2">
+          <Boxes>
+            <ContentBox backgroundimage={renderGastro}/>
+            <ContentBox><p>Unser Gebäude kombiniert auf effiziente Weise vielseitige Umgebungen: Co-Working, Gastronomie, Galerie und Bandraum.
 
 Der Co-Working Space bietet flexible Arbeitsbereiche für moderne Berufstätige, während unsere gastronomischen Einrichtungen eine Vielzahl an Geschmäckern bedienen und gleichzeitig als soziale Treffpunkte dienen.
 
-Die Galerie fördert lokale Kunst und bietet Inspiration, und der Bandraum bringt Musikfreunde zusammen und unterstützt eine pulsierende Musikszene.</ContentBox>
-            <ContentBox backgroundimage={renderGastro}/>
+Die Galerie fördert lokale Kunst und bietet Inspiration, und der Bandraum bringt Musikfreunde zusammen und unterstützt eine pulsierende Musikszene.</p></ContentBox>
           </Boxes>
         </Section>
-        <Section title="Kontakt" bgcolor="#D4A373">
+        <Section title="Kontakt" bgcolor="#f8e8b5">
           <Boxes>
-            <ContentBox>Unser Gebäude kombiniert auf effiziente Weise vielseitige Umgebungen: Co-Working, Gastronomie, Galerie und Bandraum.
+            <ContentBox><p>Unser Gebäude kombiniert auf effiziente Weise vielseitige Umgebungen: Co-Working, Gastronomie, Galerie und Bandraum.
 
 Der Co-Working Space bietet flexible Arbeitsbereiche für moderne Berufstätige, während unsere gastronomischen Einrichtungen eine Vielzahl an Geschmäckern bedienen und gleichzeitig als soziale Treffpunkte dienen.
 
-Die Galerie fördert lokale Kunst und bietet Inspiration, und der Bandraum bringt Musikfreunde zusammen und unterstützt eine pulsierende Musikszene.</ContentBox>
+Die Galerie fördert lokale Kunst und bietet Inspiration, und der Bandraum bringt Musikfreunde zusammen und unterstützt eine pulsierende Musikszene.</p></ContentBox>
             <ContentBox backgroundimage={renderGastro}/>
           </Boxes>
         </Section>
+        <Footer />
       </Main>
     </>
   )

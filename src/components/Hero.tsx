@@ -10,17 +10,16 @@ const LandingContainer = styled.div`
   justify-content: center;
   align-items: center;
   box-sizing: border-box;
-  min-height: 100vh;
-  margin-bottom: 6rem;
   width: 100%;
-  z-index: 1;
-    @media (min-width: 48rem) {
-    padding-left: 10%;
-    padding-right: 10%;
+  min-height: 100vh;
+  background-color: #BCE2C8;
+  @media (min-width: 48rem) {
+    /* padding-left: 10%; */
+    /* padding-right: 10%; */
   }
   @media (min-width: 1440px) {
-    padding-left: 20%;
-    padding-right: 20%;
+    /* padding-left: 20%; */
+    /* padding-right: 20%; */
   }
 `;
 
@@ -32,14 +31,13 @@ const LandingContainer = styled.div`
         "ImageArea"
         "NavigationArea"
         "FooterArea";
-    grid-template-columns: 1fr; // Single column for mobile view
-    grid-template-rows: repeat(4, 1fr); 
-    height: calc(90vh - 1.25rem);
+    grid-template-columns: 1fr;
+    height: 100%;
     width: 90vw;
     gap: 0.3125rem;
     box-sizing: border-box;
-
-    @media (min-width: 48rem) { // 768px replaced by 48rem
+    
+    @media (min-width: 48rem) { 
         grid-template-areas: 
             "HeaderArea HeaderArea ImageArea ImageArea"
             "HeaderArea HeaderArea ImageArea ImageArea"
@@ -48,9 +46,8 @@ const LandingContainer = styled.div`
             "NavigationArea NavigationArea ImageArea ImageArea"
             "NavigationArea NavigationArea FooterArea FooterArea";
         grid-template-columns: 2fr 2fr 1.5fr 1.5fr;
-        grid-template-rows: repeat(6, 1fr);
-        height: 100%;
-        width: 100%;
+        height: 80vh;
+        width: 70vw;
         gap: 1rem;
     }
 `;
@@ -70,6 +67,10 @@ const HeaderArea = styled(BaseArea)`
   align-items: flex-start;
   text-transform: uppercase;
   border-radius: 1rem 0 0 0;
+  height: 12rem;
+  @media (min-width: 48rem) {
+   height: 100%; 
+  }
 `;
 
 const NavigationArea = styled(BaseArea)`
@@ -79,16 +80,23 @@ const NavigationArea = styled(BaseArea)`
   align-items: flex-start;
   justify-content: flex-end;
   border-radius: 0 0 0 1rem;
+  height: 15rem;
+  @media (min-width: 48rem) {
+   height: 100%; 
+  }
 `;
 
 
 const ImageArea = styled(BaseArea)`
   grid-area: ImageArea;
-  background-image: url(${RenderClarastrasse});
-  background-size: 150%;
+  background-size: cover;
   background-position: center;
+  background-image: url(${RenderClarastrasse});
   border-radius: 0 1rem 0 0;
-  height: 30rem;
+  height: 10rem;
+  @media (min-width: 48rem) {
+   height: 100%;
+  }
 `;
 
 const FooterArea = styled(BaseArea)`
@@ -102,9 +110,10 @@ const FooterArea = styled(BaseArea)`
   border-radius: 0 0 1rem 0;
   background: #000;
   color: #fff;
-  
-  @media (max-width: 64.5rem) {
-    font-size: calc(1.25rem + (2 - 1) * ((100vw - 300px) / (1600 - 300)));
+  font-size: calc(1.25rem + (2 - 1) * ((100vw - 300px) / (1600 - 300)));
+  height: 5rem;
+  @media (min-width: 48rem) {
+    height: 100%;
   }
 `;
 
@@ -141,7 +150,7 @@ const NavLink = styled.a`
   color: #000;
   font-family: 'Gilroy', sans-serif;
   &:hover {
-    color: #CC9A6A;
+    color: #6A8A70;
   }
   @media (min-width: 74.875rem) {
     margin-right: 1.25rem;
@@ -164,7 +173,7 @@ export default function Hero() {
                     </Title>
                 </HeaderArea>
                 <NavigationArea>
-                    <NavLink href="#beschreibung">Beschreibung</NavLink>
+                    <NavLink href="#projekt">Projekt</NavLink>
                     <NavLink href="#architektur">Architektur</NavLink>
                     <NavLink href="#ueberuns">Über uns</NavLink>
                     <NavLink href="#partner">Partner</NavLink>
