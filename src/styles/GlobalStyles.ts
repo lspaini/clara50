@@ -22,6 +22,7 @@ const GlobalStyle = createGlobalStyle`
     padding: 0;
     display:grid;
     align-items: center;
+    scroll-behavior: smooth;
   }
 `
 export default GlobalStyle;

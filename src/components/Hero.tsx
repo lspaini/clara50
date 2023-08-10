@@ -1,7 +1,7 @@
 import React from 'react';
 
 // import RenderClarastrasse from '../images/render_clarastrasse.jpg';
-import RenderClarastrasse from '../images/CAM2c_copia_2.jpg';
+import RenderClarastrasse from '../images/roof.png';
 import { styled } from 'styled-components';
 
 
@@ -12,7 +12,7 @@ const LandingContainer = styled.div`
   box-sizing: border-box;
   width: 100%;
   min-height: 100vh;
-  background-color: #BCE2C8;
+  background-color: ${({ theme }) => theme.colors.heroBg};
   @media (min-width: 48rem) {
     /* padding-left: 10%; */
     /* padding-right: 10%; */
@@ -33,7 +33,6 @@ const LandingContainer = styled.div`
         "FooterArea";
     grid-template-columns: 1fr;
     height: 100%;
-    width: 90vw;
     gap: 0.3125rem;
     box-sizing: border-box;
     
@@ -66,7 +65,7 @@ const HeaderArea = styled(BaseArea)`
   justify-content: flex-start;
   align-items: flex-start;
   text-transform: uppercase;
-  border-radius: 1rem 0 0 0;
+  /* border-radius: 1rem 0 0 0; */
   height: 12rem;
   @media (min-width: 48rem) {
    height: 100%; 
@@ -79,7 +78,7 @@ const NavigationArea = styled(BaseArea)`
   flex-direction: column;
   align-items: flex-start;
   justify-content: flex-end;
-  border-radius: 0 0 0 1rem;
+  /* border-radius: 0 0 0 1rem; */
   height: 15rem;
   @media (min-width: 48rem) {
    height: 100%; 
@@ -90,9 +89,9 @@ const NavigationArea = styled(BaseArea)`
 const ImageArea = styled(BaseArea)`
   grid-area: ImageArea;
   background-size: cover;
-  background-position: center;
+  background-position: right;
   background-image: url(${RenderClarastrasse});
-  border-radius: 0 1rem 0 0;
+  /* border-radius: 0 1rem 0 0; */
   height: 10rem;
   @media (min-width: 48rem) {
    height: 100%;
@@ -107,7 +106,7 @@ const FooterArea = styled(BaseArea)`
   display: flex;
   justify-content: center;
   align-items: center;
-  border-radius: 0 0 1rem 0;
+  /* border-radius: 0 0 1rem 0; */
   background: #000;
   color: #fff;
   font-size: calc(1.25rem + (2 - 1) * ((100vw - 300px) / (1600 - 300)));
@@ -146,7 +145,7 @@ const NavLink = styled.a`
   color: #fff;
   margin-bottom: 0.625rem;
   font-family: 'Helvetica', sans-serif;
-  font-size: calc(1.25rem + (2 - 1) * ((100vw - 300px) / (1600 - 300)));
+  font-size: calc(0.5vw + 1rem);
   color: #000;
   font-family: 'Gilroy', sans-serif;
   &:hover {
@@ -177,8 +176,7 @@ export default function Hero() {
                     <NavLink href="#architektur">Architektur</NavLink>
                     <NavLink href="#ueberuns">Über uns</NavLink>
                     <NavLink href="#partner">Partner</NavLink>
-                    <NavLink href="#faq">FAQ</NavLink>
-                    <NavLink href="#kontakt">Kontakt</NavLink>
+                    <NavLink href="#konakt">Kontakt</NavLink>
                 </NavigationArea>
                 <ImageArea />
                 <FooterArea>Coming 2025</FooterArea>

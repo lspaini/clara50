@@ -6,46 +6,37 @@ interface PartnersProps {
   logos: string[];  // Array of logo URLs
 }
 
-const PartnersContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 2rem;
-  box-sizing: border-box;
-  width: 100%;
-  height: 100%;
-`;
-
 const Grid = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  gap: 2rem;  // Spacing between logos
-  width: 100%;
+  gap: 1rem;
+  width: calc(80vw - 2rem);  // Subtracting the total potential gap from the width
   height: 100%;
+  align-items: center;
+  justify-items: center;
+  grid-template-columns: repeat(3, 1fr);  // 2 items in a row for smaller screens
+
   @media (min-width: 48rem) {
-    /* max-width: 1200px;  // Adjust based on your requirements */
+    grid-template-columns: repeat(5, 1fr);  // 4 items in a row for larger screens
   }
+
 `;
 
 const Logo = styled.img`
-  width: 200px;  // You can adjust this value as needed
-  height: 200px;  // You can adjust this value as needed
-  padding: 1rem;
-  object-fit: contain;  // Ensures logos maintain their aspect ratio
+  width: 100%;
+  padding: calc(0.5rem + 1vw); // Padding will also adjust with viewport width
+  object-fit: contain; 
   box-sizing: border-box;
-  /* border-radius: 1rem; */
-  /* border: 1px solid rgba(0, 0, 0, 0.3); */
+  filter: grayscale(100%);
 `;
+
 
 const Partners: React.FC<PartnersProps> = ({ logos }) => {
   return (
-    <PartnersContainer>
       <Grid>
         {logos.map((logo, index) => (
           <Logo key={index} src={logo} alt={`Partner ${index + 1}`} />
         ))}
       </Grid>
-    </PartnersContainer>
   );
 };
 

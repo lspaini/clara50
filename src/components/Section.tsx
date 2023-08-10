@@ -6,24 +6,25 @@ interface SectionProps {
     title?: string; // Make title optional with a default value
     children?: React.ReactNode; // Children can be any renderable React node
     bgcolor?: string;
+    id: string;
   }
 
   const OuterWrapper = styled.div<SectionProps>`
   display: flex;
   flex-direction: column;
   align-items: center;
-  background: ${props => props.bgcolor ?? props.bgcolor};
   min-height: 100vh;
+  background: ${props => props.bgcolor ?? props.bgcolor};
   width: 100%;
 `;
 
 const SectionContainer = styled.div`
-  max-width: 80vw;
+  min-height: 100vh;
 `
 
   const SectionTitleContainer = styled.div`
   display: grid;
-  grid-template-columns: repeat(13, 1fr);
+  grid-template-columns: repeat(16, 1fr);
   box-sizing: border-box;
   width: 100%;
   margin-top: 4rem;
@@ -36,6 +37,7 @@ const SectionBoxes = styled.div<SectionProps>`
     justify-content: center;
     align-items: center;
     height: 100%;
+    max-width: 80vw;
   @media (min-width: 48rem) { // 768px replaced by 48rem
     box-sizing: border-box;
     padding-top: 2rem;
@@ -68,9 +70,9 @@ export const Boxes = styled.div`
 
 
 
-  function Section({ title = 'Section', children, bgcolor }: SectionProps) {
+  function Section({ id, title = 'Section', children, bgcolor }: SectionProps) {
     return (
-      <OuterWrapper bgcolor={bgcolor}>
+      <OuterWrapper id={id} bgcolor={bgcolor}>
         {/* <Divider /> */}
         <SectionContainer>
       <SectionTitleContainer>
@@ -84,8 +86,8 @@ export const Boxes = styled.div`
         <SectionBoxes bgcolor={bgcolor}>
         {children}
         </SectionBoxes>
-        {/* <Divider /> */}
         </SectionContainer>
+        {/* <Divider /> */}
         </OuterWrapper>
     );
   }

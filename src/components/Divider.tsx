@@ -3,8 +3,8 @@ import { styled } from 'styled-components';
 
 const DividerContainer = styled.div`
   display: grid;
-  grid-template-columns: repeat(13, 1fr);
-  height: 2rem;  // Adjust the height to your preference
+  grid-template-columns: repeat(16, 1fr);
+  height: 4rem;  // Adjust the height to your preference
   width: 100%;
 `;
 
@@ -20,7 +20,7 @@ const VerticalLine = styled.div`
 const Divider: React.FC = () => {
   return (
     <DividerContainer>
-      {Array.from({ length: 13 }).map((_, index) => (
+      {Array.from({ length: 16 }).map((_, index) => (
         <VerticalLine key={index} />
       ))}
     </DividerContainer>
