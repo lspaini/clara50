@@ -2,7 +2,7 @@
 export const theme = {
     colors: {
       primaryBg: '#f8f6f2',
-      secondaryBg: '#f8e8b5',
+      secondaryBg: '#BCE2C8',
       heroBg: '#BCE2C8',
     }
   };

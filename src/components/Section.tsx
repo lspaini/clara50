@@ -7,6 +7,7 @@ interface SectionProps {
     children?: React.ReactNode; // Children can be any renderable React node
     bgcolor?: string;
     id: string;
+    color?: string;
   }
 
   const OuterWrapper = styled.div<SectionProps>`
@@ -24,11 +25,12 @@ const SectionContainer = styled.div`
 
   const SectionTitleContainer = styled.div`
   display: grid;
-  grid-template-columns: repeat(16, 1fr);
+  grid-template-columns: repeat(14, 1fr);
   box-sizing: border-box;
   width: 100%;
   margin-top: 4rem;
   margin-bottom: 2rem;
+  justify-self: flex-start;
   `;
 
 const SectionBoxes = styled.div<SectionProps>`
@@ -37,7 +39,6 @@ const SectionBoxes = styled.div<SectionProps>`
     justify-content: center;
     align-items: center;
     height: 100%;
-    max-width: 80vw;
   @media (min-width: 48rem) { // 768px replaced by 48rem
     box-sizing: border-box;
     padding-top: 2rem;
@@ -53,8 +54,9 @@ const SectionTitleLetter = styled.h1`
   font-weight: 200;
   line-height: 1;
   margin: 0; 
-  color: #000;
+  color: ${props => props.color ?? '#000'};
   margin-bottom: 2rem;
+  padding-left: 1rem;
 `;
 
 export const Boxes = styled.div`
@@ -63,26 +65,27 @@ export const Boxes = styled.div`
   box-sizing: border-box;
   @media (min-width: 765px) {
     flex-direction: row;
-    gap: 2rem;
+    gap: 4rem;
+    max-width: 1400px;
   }
 `;
 
 
 
 
-  function Section({ id, title = 'Section', children, bgcolor }: SectionProps) {
+  function Section({ id, title = 'Section', children, bgcolor, color }: SectionProps) {
     return (
       <OuterWrapper id={id} bgcolor={bgcolor}>
         {/* <Divider /> */}
-        <SectionContainer>
       <SectionTitleContainer>
         <div></div> {/* Empty grid cell to offset the letters by one column */}
         {Array.from(title).map((letter, index) => (
-          <SectionTitleLetter key={index}>
+          <SectionTitleLetter key={index} color={color}>
             {letter}
           </SectionTitleLetter>
         ))}
       </SectionTitleContainer>
+        <SectionContainer>
         <SectionBoxes bgcolor={bgcolor}>
         {children}
         </SectionBoxes>

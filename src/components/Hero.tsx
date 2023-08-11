@@ -1,7 +1,7 @@
 import React from 'react';
 
 // import RenderClarastrasse from '../images/render_clarastrasse.jpg';
-import RenderClarastrasse from '../images/roof.png';
+import RenderClarastrasse from '../images/roof1.png';
 import { styled } from 'styled-components';
 
 
@@ -12,15 +12,20 @@ const LandingContainer = styled.div`
   box-sizing: border-box;
   width: 100%;
   min-height: 100vh;
-  background-color: ${({ theme }) => theme.colors.heroBg};
-  @media (min-width: 48rem) {
-    /* padding-left: 10%; */
-    /* padding-right: 10%; */
-  }
-  @media (min-width: 1440px) {
-    /* padding-left: 20%; */
-    /* padding-right: 20%; */
-  }
+  position: relative;
+  &::before {
+        content: '';
+        position: absolute;
+        background-image: url(${RenderClarastrasse});
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-size: cover;
+        background-position: left bottom;
+        z-index: 1;
+        filter: grayscale(100%);
+    }
 `;
 
 
@@ -35,6 +40,9 @@ const LandingContainer = styled.div`
     height: 100%;
     gap: 0.3125rem;
     box-sizing: border-box;
+    position: relative;
+    z-index: 3;
+
     
     @media (min-width: 48rem) { 
         grid-template-areas: 
@@ -54,8 +62,9 @@ const LandingContainer = styled.div`
 const BaseArea = styled.div`
   box-sizing: border-box;
   padding: 1.5rem;
-  color: #000;
-  border: 1px solid #000;
+  color: #fff;
+  border: 3px solid #fff;
+  background: #000;
 `;
 
 const HeaderArea = styled(BaseArea)`
@@ -65,7 +74,6 @@ const HeaderArea = styled(BaseArea)`
   justify-content: flex-start;
   align-items: flex-start;
   text-transform: uppercase;
-  /* border-radius: 1rem 0 0 0; */
   height: 12rem;
   @media (min-width: 48rem) {
    height: 100%; 
@@ -78,7 +86,6 @@ const NavigationArea = styled(BaseArea)`
   flex-direction: column;
   align-items: flex-start;
   justify-content: flex-end;
-  /* border-radius: 0 0 0 1rem; */
   height: 15rem;
   @media (min-width: 48rem) {
    height: 100%; 
@@ -87,30 +94,55 @@ const NavigationArea = styled(BaseArea)`
 
 
 const ImageArea = styled(BaseArea)`
-  grid-area: ImageArea;
-  background-size: cover;
-  background-position: right;
-  background-image: url(${RenderClarastrasse});
-  /* border-radius: 0 1rem 0 0; */
-  height: 10rem;
+grid-area: ImageArea;
+  position: relative;  // To contain the absolute positioned Background
+  overflow: hidden;  // To make sure the background does not spill outside
+  height: 100vh;
+  &::before {
+        content: '';
+        position: absolute;
+        background-image: url(${RenderClarastrasse});
+        height: 100vh;
+        width: 100vw;
+        top: 0;
+        left: -100%;
+        right: 0;
+        bottom: 0;
+        background-size: cover;
+        background-position: left bottom;
+        z-index: 1;
+    }
+
   @media (min-width: 48rem) {
-   height: 100%;
+    height: 100%;
   }
 `;
+
+const Background = styled.div`
+  position: absolute;
+  top: -50;
+  left: -50;
+  right: 0;
+  bottom: 0;
+  height: 100vh;
+  width: 100vw;
+  background-size: cover;
+  background-image: url(${RenderClarastrasse});
+`
 
 const FooterArea = styled(BaseArea)`
   grid-area: FooterArea;
   font-family: 'Gilroy', sans-serif;
   font-weight: 200;
-  font-size: calc(1.25rem + (2 - 1) * ((100vw - 300px) / (1600 - 300)));
   display: flex;
   justify-content: center;
   align-items: center;
-  /* border-radius: 0 0 1rem 0; */
   background: #000;
   color: #fff;
   font-size: calc(1.25rem + (2 - 1) * ((100vw - 300px) / (1600 - 300)));
   height: 5rem;
+  position: relative;
+
   @media (min-width: 48rem) {
     height: 100%;
   }
@@ -120,7 +152,7 @@ const Title = styled.div`
 display: flex;
 justify-content: flex-start;
 align-items: center;
-margin-bottom: 0.625rem; // 10px replaced by 0.625rem
+margin-bottom: 0.625rem;
 `;
 
 const TitleLetter = styled.div`
@@ -142,11 +174,10 @@ font-weight: 800;
 
 const NavLink = styled.a`
   text-decoration: none;
-  color: #fff;
   margin-bottom: 0.625rem;
   font-family: 'Helvetica', sans-serif;
   font-size: calc(0.5vw + 1rem);
-  color: #000;
+  color: #fff;
   font-family: 'Gilroy', sans-serif;
   &:hover {
     color: #6A8A70;
@@ -157,7 +188,7 @@ const NavLink = styled.a`
 `;
 
 export default function Hero() {
-    return (
+    return (<>
         <LandingContainer>
             <LandingGrid>
                 <HeaderArea>
@@ -178,9 +209,12 @@ export default function Hero() {
                     <NavLink href="#partner">Partner</NavLink>
                     <NavLink href="#konakt">Kontakt</NavLink>
                 </NavigationArea>
-                <ImageArea />
+                <ImageArea>
+              </ImageArea>
+                
                 <FooterArea>Coming 2025</FooterArea>
             </LandingGrid>
         </LandingContainer>
+        </>
     );
 }

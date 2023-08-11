@@ -17,7 +17,7 @@ const FooterContainer = styled.footer`
 const Footer: React.FC = () => {
   return (
     <FooterContainer>
-      © {new Date().getFullYear()} Erda Immobilien. All rights reserved.
+      {/* © {new Date().getFullYear()} Erda Immobilien. All rights reserved. */}
     </FooterContainer>
   );
 };
