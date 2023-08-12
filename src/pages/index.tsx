@@ -1,31 +1,30 @@
 import * as React from "react";
-import { PageProps } from "gatsby";
 import Hero from "../components/Hero";
 import GlobalStyle from '../styles/GlobalStyles';  // Adjust path as necessary
 import { styled } from "styled-components";
 import Section, { Boxes } from "../components/Section";
 import ContentBox from "../components/ContentBox";
-import renderClarastrasse from "../images/render_clarastrasse.jpg";
-import mapImage from "../images/map.jpeg";
-import renderGastro from "../images/CAM3_copia_2.jpg";
-import renderAp from "../images/untitled49.png";
 import Footer from "../components/Footer";
-import partner2 from "../images/partner/perita.svg";
-import partner1 from "../images/partner/benarici.png";
-import partner3 from "../images/partner/durable.png";
-import partner4 from "../images/partner/gt.png";
-import partner5 from "../images/partner/garden.png";
-import partner6 from "../images/partner/eitel.png";
-import partner7 from "../images/partner/eplan.png";
-import partner8 from "../images/partner/SuP.svg";
 import Partners from "../components/Partners";
 import { ThemeProvider } from 'styled-components';
 import { theme } from '../styles/theme';
+import { graphql, PageProps } from 'gatsby';
+import { IGatsbyImageData } from 'gatsby-plugin-image';
 
-const partnerLogos = [
-  partner1, partner2, partner3, partner4, partner5, partner6, partner7, partner8
-];
+interface ImageData {
+  childImageSharp: {
+    gatsbyImageData: IGatsbyImageData;
+  };
+}
 
+interface IndexPageProps extends PageProps {
+  data: {
+    renderAp: ImageData;
+    renderMap: ImageData;
+    renderGastro: ImageData;
+    renderCl: ImageData;
+  };
+}
 
 const Main = styled.main`
   display: flex;
@@ -39,9 +38,12 @@ const Main = styled.main`
 
 
 
+const IndexPage: React.FC<IndexPageProps> = ({ data }) => {
+  const renderApImage = data.renderAp.childImageSharp.gatsbyImageData;
+  const mapImage = data.renderMap.childImageSharp.gatsbyImageData;
+  const renderGastro = data.renderGastro.childImageSharp.gatsbyImageData;
+  const renderClarastrasse = data.renderCl.childImageSharp.gatsbyImageData;
 
-
-const IndexPage: React.FC<PageProps> = () => {
   return (
     <>
       <GlobalStyle />
@@ -51,22 +53,22 @@ const IndexPage: React.FC<PageProps> = () => {
         <Section id="projekt" title="Projekt" bgcolor={theme.colors.primaryBg}>
           <Boxes>
             <ContentBox><h2>Basel wächst</h2><p>Der neu errichtete Bau an der Clarastrasse wird die Wohnungsanzahl von bisher vier auf insgesamt 13 steigern. Diese Wohnungen sind in unterschiedlichen Grössen verfügbar, wobei alle Grundrisse für eine optimale Raumausnutzung konzipiert sind. Dadurch gewährleisten selbst die kompaktesten Einheiten eine überdurchschnittliche Wohnqualität.</p></ContentBox>
-            <ContentBox backgroundimage={renderAp} />
+            <ContentBox image={renderApImage} />
           </Boxes>
           <Boxes>
-            <ContentBox backgroundimage={mapImage}/>
+            <ContentBox image={mapImage}/>
             <ContentBox> <h2>Am Messeplatz verankert</h2>
             <p>Das Gebäude in der Clarastrasse 50 liegt nur einen Steinwurf vom Messeplatz entfernt und in direkter Nachbarschaft zum Claraturm. Dank einer hervorragenden Anbindung an den öffentlichen Verkehr und einer Vielzahl an nahegelegenen Annehmlichkeiten – darunter Einkaufsmöglichkeiten, Restaurants und Fitnesscenter – profitieren die Bewohner*innen von einem komfortablen und lebendigen Stadtleben.</p>
             </ContentBox>
           </Boxes>
           <Boxes>
             <ContentBox><h2>Für eine lebendige Clarastrasse.</h2><p>Die Clarastrasse 50 vereint diverse Nutzungsmöglichkeiten: Co-Working, Gastronomie, Gewerbe, Galerie und einen Bandraum. Diese Bereiche sind so konzipiert, dass sie nahtlos ineinandergreifen und Experimentierfreude anregen, um der Clarastrasse frischen Wind zu verleihen.</p></ContentBox>
-            <ContentBox backgroundimage={renderGastro}/>
+            <ContentBox image={renderGastro}/>
           </Boxes>
         </Section>
         <Section id="architektur" title="Architektur" bgcolor={theme.colors.secondaryBg}>
           <Boxes>
-            <ContentBox backgroundimage={renderClarastrasse}/>
+            <ContentBox image={renderClarastrasse}/>
             <ContentBox><h2>Architektur trifft Natur.</h2><p>Die Architektur wurde mit der Begrünung des Gebäudes im Fokus ausgestaltet. Durch die Integration des vertikalen Gartens, dem begrünten Dach mit seinen drei Bäumen, wird nicht nur das Stadtklima, im kleinen Rahmen, positiv beeinflusst, sondern auch Lebensraum für Flora und Fauna geschaffen. Zudem tragen die grünen Elemente zur natürlichen Isolierung des Gebäudes bei, was sich vorteilhaft auf die Energiebilanz auswirkt. Darüber hinaus schafft die Begrünung eine angenehme Atmosphäre für die Bewohner und Nutzer des Gebäudes, indem sie zur Lärmreduzierung beiträgt und die Privatsphäre verbessert.</p></ContentBox>
           </Boxes>
           <Boxes>
@@ -89,7 +91,7 @@ Das Projekt begann mit einer einfachen Frage: Wie können wir die Clarastrasse a
           </Section>
         <Section id="partner" title="Partner" bgcolor="#000" color="#fff">
           <Boxes>
-          <Partners logos={partnerLogos} />
+          <Partners />
           </Boxes>
         </Section>
         <Footer />
@@ -100,4 +102,31 @@ Das Projekt begann mit einer einfachen Frage: Wie können wir die Clarastrasse a
 }
 
 export default IndexPage;
+
+export const pageQuery = graphql`
+  query {
+    renderAp: file(relativePath: { eq: "untitled49.png" }) {
+      childImageSharp {
+        gatsbyImageData(layout: CONSTRAINED, width: 1200, height: 1000)
+      }
+    }
+    renderMap: file(relativePath: { eq: "map.jpeg" }) {
+      childImageSharp {
+        gatsbyImageData(layout: CONSTRAINED, width: 1200, height: 1000)
+      }
+    }
+    renderCl: file(relativePath: { eq: "render_clarastrasse.jpg" }) {
+      childImageSharp {
+        gatsbyImageData(layout: CONSTRAINED, width: 1200, height: 1000)
+      }
+    }
+    renderGastro: file(relativePath: { eq: "CAM3_copia_2.jpg" }) {
+      childImageSharp {
+        gatsbyImageData(layout: CONSTRAINED, width: 1200, height: 1000)
+      }
+    }
+  }
+`;
+
+
 export const Head: React.FC = () => <title>Clarastrasse 50</title>

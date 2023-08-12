@@ -1,12 +1,13 @@
 import React from 'react';
 import styled from 'styled-components';
-import { StaticImage } from 'gatsby-plugin-image';
+import { GatsbyImage, IGatsbyImageData } from 'gatsby-plugin-image';
 
 interface ContentBoxProps {
-  src?: string; // Optional image URL
+  image?: IGatsbyImageData;
   imageposition?: string;
-  children?: React.ReactNode; // Optional children (e.g., text)
+  children?: React.ReactNode;
   justifycontent?: string;
+  altImage?: string;
 }
 
 const StyledContentBox = styled.div<ContentBoxProps>`
@@ -15,15 +16,11 @@ const StyledContentBox = styled.div<ContentBoxProps>`
   font: 1rem/1.5 'Gilroy', sans-serif;
   text-align: justify;
   margin-bottom: 4rem;
-  min-height: 50vh;
   display: flex;
   flex-direction: column;
-  justify-content: ${props => props.justifycontent ? props.justifycontent : 'center'};
-  padding: 1rem;
+  justify-content: ${props => props.justifycontent ?? 'center'};
 
   @media (min-width: 48rem) {
-    padding: 0;
-    width: 40vw;
     font-size: calc(0.1vw + 1rem);
   }
 
@@ -37,21 +34,14 @@ const StyledContentBox = styled.div<ContentBoxProps>`
   }
 `;
 
-const ContentBox: React.FC<ContentBoxProps> = ({ src, children, imageposition = 'center', justifycontent }) => {
+const ContentBox: React.FC<ContentBoxProps> = ({ image, children, altImage = '', justifycontent }) => {
   return (
-    <StyledContentBox justifycontent={justifycontent}>
-      {src && 
-        <StaticImage 
-          src={src} 
-          alt="" 
-          layout="fullWidth"
-          objectFit="cover"
-          objectPosition={imageposition}
-        />
-      }
+    <StyledContentBox justifycontent={justifycontent} >
+      {image && <GatsbyImage image={image} alt={altImage} />}
       {children}
     </StyledContentBox>
   );
 };
+
 
 export default ContentBox;

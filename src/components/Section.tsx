@@ -2,9 +2,9 @@ import React from 'react';
 import  styled  from 'styled-components';
 
 interface SectionProps {
-  id: string;
-    title?: string; // Make title optional with a default value
-    children?: React.ReactNode; // Children can be any renderable React node
+  id?: string;
+    title?: string;
+    children?: React.ReactNode;
     bgcolor?: string;
     color?: string;
   }
@@ -16,41 +16,52 @@ interface SectionProps {
   min-height: 100vh;
   background: ${props => props.bgcolor ?? 'inherit'};
   width: 100%;
+  background: green;
 `;
 
 const SectionContainer = styled.div`
   min-height: 100vh;
+  max-width: 1600px;
+  box-sizing: border-box;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  background: blue;
+  @media (min-width: 48rem) {
+    padding-left: 6rem;
+    padding-right: 6rem;
+  }
 `
 
   const SectionTitleContainer = styled.div`
   display: grid;
-  grid-template-columns: repeat(12, 1fr);
   box-sizing: border-box;
   width: 100%;
   margin-top: 2rem;
   margin-bottom: 1rem;
-  padding-left: 1rem;
 
   @media (min-width: 48rem) {
-    padding: 0;
     margin-top: 4rem;
     margin-bottom: 2rem;
   }
   `;
 
-const SectionTitleLetter = styled.h1`
+const SectionTitle = styled.h1`
   font-family: 'Gilroy', sans-serif;
   text-transform: uppercase;
-  font-size: calc(2vw + 2rem);
   font-weight: 200;
+  font-size: calc(2vw + 2rem);
   margin: 0;
   padding: 0;
+  width: 100%;
   color: ${props => props.color ?? '#000'};
+  letter-spacing: 0.3rem;
   
   @media (min-width: 48rem) {
+    letter-spacing: 2rem;
     font-size: calc(3vw + 3rem);
   }
 `;
+
 
 const SectionBoxes = styled.div<SectionProps>`
     display: flex;
@@ -66,13 +77,13 @@ const SectionBoxes = styled.div<SectionProps>`
 `;
 
 export const Boxes = styled.div`
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: 1fr;
   box-sizing: border-box;
   @media (min-width: 48rem) {
+    grid-template-columns: 1fr 1fr;
     flex-direction: row;
     gap: 4rem;
-    max-width: 1600px;
   }
 `;
 
@@ -83,16 +94,12 @@ export const Boxes = styled.div`
     return (
       <OuterWrapper id={id} bgcolor={bgcolor}>
         <SectionContainer>
-      <SectionTitleContainer>
-        {Array.from(title).map((letter, index) => (
-          <SectionTitleLetter key={index} color={color}>
-            {letter}
-          </SectionTitleLetter>
-        ))}
-      </SectionTitleContainer>
-          <SectionBoxes bgcolor={bgcolor}>
-            {children}
-         </SectionBoxes>
+          <SectionTitleContainer>
+             <SectionTitle color={color}>{title}</SectionTitle>
+          </SectionTitleContainer>
+           <SectionBoxes bgcolor={bgcolor}>
+              {children}
+           </SectionBoxes>
         </SectionContainer>
       </OuterWrapper>
     );

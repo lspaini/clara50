@@ -1,5 +1,4 @@
 import React, { useRef, useState, useEffect } from 'react';
-// import RenderClarastrasse from '../images/render_clarastrasse.jpg';
 import RenderClarastrasse from '../images/roof1.png';
 import { styled } from 'styled-components';
 
