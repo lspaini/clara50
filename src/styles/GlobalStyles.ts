@@ -29,8 +29,5 @@ const GlobalStyle = createGlobalStyle`
     margin: 0;
     padding: 0;
   }
-  h2 {
-    padding: 0 0 0.5rem 0;
-  }
 `
 export default GlobalStyle;

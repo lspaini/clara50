@@ -87,7 +87,20 @@ Das Projekt begann mit einer einfachen Frage: Wie können wir die Clarastrasse a
 <br />Wir freuen uns auf ein Gebäude, das zum Verweilen einlädt.
 
  </p></ContentBox>
-            <ContentBox justifycontent="flex-start"><h2>Impressum</h2><p>Flavio Spaini <br /> Gaggischeisse strasse 28 <br /> 4051 Basel <br /> flavio@spaini.ch <br /> <br /> Livio Spaini <br/ > livio@spaini.ch <br /></p></ContentBox>
+            <ContentBox justifycontent="flex-start">
+              <h2>Impressum</h2>
+              <p>
+                Flavio Spaini <br />
+                Meret Oppenheim Strasse 6 <br />
+                4053 Basel <br />
+                <a href="mailto:flavio@spaini.ch">flavio@spaini.ch</a> <br />
+                <br />
+                Livio Spaini <br />
+                St. Alban-Anlage 27 <br />
+                4052 Basel <br />
+                <a href="mailto:livio@spaini.ch">livio@spaini.ch</a> <br />
+              </p>
+            </ContentBox>
           </Boxes>
           </Section>
         <Section id="partner" title="Partner" bgcolor="#000" color="#fff">

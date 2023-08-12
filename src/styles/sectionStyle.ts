@@ -38,7 +38,7 @@ margin-bottom: 1rem;
 
 @media (min-width: 48rem) {
   margin-top: 4rem;
-  margin-bottom: 2rem;
+  margin-bottom: 3rem;
 }
 `;
 
@@ -66,10 +66,10 @@ export const SectionBoxes = styled.div<SectionProps>`
   justify-content: center;
   align-items: center;
   height: 100%;
-@media (min-width: 48rem) { 
-  box-sizing: border-box;
-  padding-top: 2rem;
-  padding-bottom: 5rem;
+  @media (min-width: 48rem) { 
+    box-sizing: border-box;
+    margin-top: 2rem;
+    margin-bottom: 5rem;
 }
 `;
 

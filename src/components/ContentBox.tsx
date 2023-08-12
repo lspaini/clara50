@@ -13,15 +13,30 @@ interface ContentBoxProps {
 const StyledContentBox = styled.div<ContentBoxProps>`
   position: relative;
   box-sizing: border-box;
-  font: 1rem/1.5 'Gilroy', sans-serif;
-  text-align: justify;
-  margin-bottom: 4rem;
+  font-family: 'Gilroy', sans-serif;
+  font-size: 1.25rem;
+  line-height: 1.25;
+  text-align: left;
+  margin-bottom: 2rem;
   display: flex;
   flex-direction: column;
   justify-content: ${props => props.justifycontent ?? 'center'};
-
+  & > h2 {
+    font-size: 1.5rem;
+    text-align: left;
+    margin-bottom: 5px;
+  }
+  
   @media (min-width: 48rem) {
-    font-size: calc(0.1vw + 1rem);
+    text-align: justify;
+    line-height: 1.5;
+    margin-bottom: 4rem;
+
+    & > h2 {
+    line-height: 1.5;
+    font-size: 2rem;
+    margin-bottom: 5px;
+  }
   }
 
   .gatsbyImageWrapper {

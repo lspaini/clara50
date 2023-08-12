@@ -31,7 +31,7 @@ export default function Hero() {
       }
     }
   
-    setTimeout(updateDistances, 0); // Delay the initial calculation
+    setTimeout(updateDistances, 50); // Delay the initial calculation
   
     window.addEventListener('resize', updateDistances);
   
