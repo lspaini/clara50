@@ -16,12 +16,18 @@ const GlobalStyle = createGlobalStyle`
     font-style: normal;
   }
   html, body, #root {
+    background: #000;
     height: 100%;
     width: 100%;
     margin: 0;
     padding: 0;
     display:grid;
     align-items: center;
+    scroll-behavior: smooth;
+  }
+  h1, h2, h3, h4, h5, h6, p {
+    margin: 0;
+    padding: 0;
   }
 `
 export default GlobalStyle;
