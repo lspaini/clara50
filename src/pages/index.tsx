@@ -70,21 +70,21 @@ const IndexPage: React.FC<PageProps> = () => {
             <ContentBox><h2>Architektur trifft Natur.</h2><p>Die Architektur wurde mit der Begrünung des Gebäudes im Fokus ausgestaltet. Durch die Integration des vertikalen Gartens, dem begrünten Dach mit seinen drei Bäumen, wird nicht nur das Stadtklima, im kleinen Rahmen, positiv beeinflusst, sondern auch Lebensraum für Flora und Fauna geschaffen. Zudem tragen die grünen Elemente zur natürlichen Isolierung des Gebäudes bei, was sich vorteilhaft auf die Energiebilanz auswirkt. Darüber hinaus schafft die Begrünung eine angenehme Atmosphäre für die Bewohner und Nutzer des Gebäudes, indem sie zur Lärmreduzierung beiträgt und die Privatsphäre verbessert.</p></ContentBox>
           </Boxes>
           <Boxes>
-            <ContentBox justifyContent="flex-start"><h2>Nachhaltig durch Innovation.</h2><p>Das Gebäude ist aus einem innovativen Material des ETH-Spinoffs Neustark (Link) gefertigt, welches auf Recyclingbeton aufbaut und gleichzeitig CO2 dauerhaft aus der Atmosphäre bindet. Erdsonden fungieren nicht nur als Heizquelle, sondern sorgen dank eines Free-Cooling-Systems (Link) auch für nachhaltige Kühlung. Dies gewährleistet selbst an der wärmsten Stelle der Stadt angenehme Temperaturen im Sommer. Mit unserer Technologieauswahl streben wir danach, die Forschung und Verbreitung solcher Lösungen zu fördern.
+            <ContentBox justifycontent="flex-start"><h2>Nachhaltig durch Innovation.</h2><p>Das Gebäude ist aus einem innovativen Material des ETH-Spinoffs Neustark (Link) gefertigt, welches auf Recyclingbeton aufbaut und gleichzeitig CO2 dauerhaft aus der Atmosphäre bindet. Erdsonden fungieren nicht nur als Heizquelle, sondern sorgen dank eines Free-Cooling-Systems (Link) auch für nachhaltige Kühlung. Dies gewährleistet selbst an der wärmsten Stelle der Stadt angenehme Temperaturen im Sommer. Mit unserer Technologieauswahl streben wir danach, die Forschung und Verbreitung solcher Lösungen zu fördern.
 </p></ContentBox>
-<ContentBox justifyContent="flex-start"><h2>Leben Sichtbar machen.</h2><p>Die Architektur strebt danach, die Vitalität des Gebäudeinneren nach aussen zu reflektieren und so eine lebendige Außenwirkung zu erzeugen. Mit der Fassadenbegrünung wird ein ästhetischer Sichtschutz geschaffen, der das Zuziehen von Vorhängen überflüssig macht und so einen anonymen Gebäudecharakter vermeidet.</p></ContentBox>
+<ContentBox justifycontent="flex-start"><h2>Leben Sichtbar machen.</h2><p>Die Architektur strebt danach, die Vitalität des Gebäudeinneren nach aussen zu reflektieren und so eine lebendige Außenwirkung zu erzeugen. Mit der Fassadenbegrünung wird ein ästhetischer Sichtschutz geschaffen, der das Zuziehen von Vorhängen überflüssig macht und so einen anonymen Gebäudecharakter vermeidet.</p></ContentBox>
           </Boxes>
         </Section>
         <Section id="ueberuns" title="Über uns" bgcolor={theme.colors.primaryBg}>
           <Boxes>
-            <ContentBox justifyContent="flex-start"><h2>Wir sind Livio und Flavio.</h2><p>Basel ist unsere Heimat, und es freut uns besonders, dieses Projekt an solch einer zentralen Stelle verwirklichen zu dürfen. Die Möglichkeit, in unserer Stadt etwas Neues zu gestalten, haben wir mit Sorgfalt und Engagement angepackt.<br/> <br/>
+            <ContentBox justifycontent="flex-start"><h2>Wir sind Livio und Flavio.</h2><p>Basel ist unsere Heimat, und es freut uns besonders, dieses Projekt an solch einer zentralen Stelle verwirklichen zu dürfen. Die Möglichkeit, in unserer Stadt etwas Neues zu gestalten, haben wir mit Sorgfalt und Engagement angepackt.<br/> <br/>
 
 Das Projekt begann mit einer einfachen Frage: Wie können wir die Clarastrasse aufwerten? Mit diesem Gebäude bieten wir unsere Lösung an und danken allen Baslerinnen und Baslern, die uns dabei unterstützt haben.
 <br/>
 <br />Wir freuen uns auf ein Gebäude, das zum Verweilen einlädt.
 
  </p></ContentBox>
-            <ContentBox justifyContent="flex-start"><h2>Impressum</h2><p>Flavio Spaini <br /> Gaggischeisse strasse 28 <br /> 4051 Basel <br /> flavio@spaini.ch <br /> <br /> Livio Spaini <br/ > <a mailTo="livio@spaini.ch">livio@spaini.ch</a> <br /></p></ContentBox>
+            <ContentBox justifycontent="flex-start"><h2>Impressum</h2><p>Flavio Spaini <br /> Gaggischeisse strasse 28 <br /> 4051 Basel <br /> flavio@spaini.ch <br /> <br /> Livio Spaini <br/ > livio@spaini.ch <br /></p></ContentBox>
           </Boxes>
           </Section>
         <Section id="partner" title="Partner" bgcolor="#000" color="#fff">

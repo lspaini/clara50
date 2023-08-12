@@ -1,40 +1,54 @@
 import React from 'react';
-import {styled} from 'styled-components';
+import styled from 'styled-components';
+import { StaticImage } from 'gatsby-plugin-image';
 
 interface ContentBoxProps {
-  backgroundimage?: string; // Optional image URL
+  src?: string; // Optional image URL
   imageposition?: string;
   children?: React.ReactNode; // Optional children (e.g., text)
-  justifyContent?: string;
+  justifycontent?: string;
 }
 
 const StyledContentBox = styled.div<ContentBoxProps>`
-background-image: ${props => props.backgroundimage ? `url(${props.backgroundimage})` : 'none'}; 
-background-size: cover;
-background-position: ${props => props.imageposition ? `url(${props.imageposition})` : 'bottom'};
-box-sizing: border-box;
-width: 40vw;
-font: 1rem/1.5 'Gilroy', sans-serif;
-margin-bottom: 4rem;
-min-height: 50vh;
-text-align: justify;
-display: flex;
-flex-direction: column;
-justify-content: ${props => props.justifyContent ? props.justifyContent : 'center'};
+  position: relative;
+  box-sizing: border-box;
+  font: 1rem/1.5 'Gilroy', sans-serif;
+  text-align: justify;
+  margin-bottom: 4rem;
+  min-height: 50vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: ${props => props.justifycontent ? props.justifycontent : 'center'};
+  padding: 1rem;
 
-/* padding: 0 2rem 2rem 2rem; */
-& > p {
-}
-@media (min-width: 48rem) {
-  font-size: calc(0.1vw + 1rem);
-  /* border-radius: 1rem; */
-  /* border: 1px solid #000; */
-}
+  @media (min-width: 48rem) {
+    padding: 0;
+    width: 40vw;
+    font-size: calc(0.1vw + 1rem);
+  }
+
+  .gatsbyImageWrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1; // to place the image behind the content
+  }
 `;
 
-const ContentBox: React.FC<ContentBoxProps> = ({ backgroundimage, children, imageposition, justifyContent }) => {
+const ContentBox: React.FC<ContentBoxProps> = ({ src, children, imageposition = 'center', justifycontent }) => {
   return (
-    <StyledContentBox justifyContent={justifyContent} backgroundimage={backgroundimage} imageposition={imageposition}>
+    <StyledContentBox justifycontent={justifycontent}>
+      {src && 
+        <StaticImage 
+          src={src} 
+          alt="" 
+          layout="fullWidth"
+          objectFit="cover"
+          objectPosition={imageposition}
+        />
+      }
       {children}
     </StyledContentBox>
   );

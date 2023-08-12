@@ -1,8 +1,12 @@
-import React from 'react';
-
+import React, { useRef, useState, useEffect } from 'react';
 // import RenderClarastrasse from '../images/render_clarastrasse.jpg';
 import RenderClarastrasse from '../images/roof1.png';
 import { styled } from 'styled-components';
+
+interface ImageAreaProps {
+  leftOffset?: string;
+  topOffset?: string;
+}
 
 
 const LandingContainer = styled.div`
@@ -93,23 +97,20 @@ const NavigationArea = styled(BaseArea)`
 `;
 
 
-const ImageArea = styled(BaseArea)`
+const ImageArea = styled(BaseArea)<ImageAreaProps>`
 grid-area: ImageArea;
-  position: relative;  // To contain the absolute positioned Background
-  overflow: hidden;  // To make sure the background does not spill outside
-  height: 100vh;
+  position: relative; 
+  overflow: hidden;  
+  height: 100%;
   &::before {
         content: '';
         position: absolute;
         background-image: url(${RenderClarastrasse});
-        height: 100vh;
-        width: 100vw;
-        top: 0;
-        left: -100%;
+        background-size: cover;
+        top: ${props => props.leftOffset ? `-${props.leftOffset}px` : '-100%'};
+        left: ${props => props.leftOffset ? `-${props.leftOffset}px` : '-100%'};
         right: 0;
         bottom: 0;
-        background-size: cover;
-        background-position: left bottom;
         z-index: 1;
     }
 
@@ -117,18 +118,6 @@ grid-area: ImageArea;
     height: 100%;
   }
 `;
-
-const Background = styled.div`
-  position: absolute;
-  top: -50;
-  left: -50;
-  right: 0;
-  bottom: 0;
-  height: 100vh;
-  width: 100vw;
-  background-size: cover;
-  background-image: url(${RenderClarastrasse});
-`
 
 const FooterArea = styled(BaseArea)`
   grid-area: FooterArea;
@@ -188,6 +177,32 @@ const NavLink = styled.a`
 `;
 
 export default function Hero() {
+  const imageAreaRef = useRef(null);
+  const [distanceToLeft, setDistanceToLeft] = useState(0);
+  const [distanceToTop, setDistanceToTop] = useState(0);
+
+  useEffect(() => {
+      function updateDistances() {
+          if (imageAreaRef.current) {
+              const rect = imageAreaRef.current.getBoundingClientRect();
+              setDistanceToLeft(rect.left);
+              setDistanceToTop(rect.top);
+          }
+      }
+
+      // Initial calculation
+      updateDistances();
+
+      // Set up the event listener
+      window.addEventListener('resize', updateDistances);
+
+      // Clean up the event listener on unmount
+      return () => {
+          window.removeEventListener('resize', updateDistances);
+      };
+  }, []);
+
+
     return (<>
         <LandingContainer>
             <LandingGrid>
@@ -209,8 +224,7 @@ export default function Hero() {
                     <NavLink href="#partner">Partner</NavLink>
                     <NavLink href="#konakt">Kontakt</NavLink>
                 </NavigationArea>
-                <ImageArea>
-              </ImageArea>
+                <ImageArea ref={imageAreaRef} leftOffset={distanceToLeft} topOffset={distanceToTop} />
                 
                 <FooterArea>Coming 2025</FooterArea>
             </LandingGrid>
