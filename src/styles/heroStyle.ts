@@ -39,7 +39,7 @@ export const HeroGrid = styled.div`
         "NavigationArea"
         "FooterArea";
     grid-template-columns: 1fr;
-    grid-template-rows: 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 0.5fr;
     height: 100%;
     width: 100%;
     gap: 0.3125rem;
@@ -114,8 +114,8 @@ export const ImageAreaBackground = styled(GatsbyImage)<ImageAreaProps>`
   left: 0;
   top: 0;
   @media (min-width: 48rem) {
-    left: calc(-${props => props.distanceToLeft}px - 0.625rem) ;
-    top: calc(-${props => props.distanceToTop}px - 0.3125rem) ;
+    left: calc(-${props => props.distanceToLeft}px - 0.78rem) ; /* no idea what 0.78rem could be */
+    top: calc(-${props => props.distanceToTop}px - 0.3125rem) ; /* border pixel size */
   width: 100vw;
   height: 100vh;
  }
@@ -129,24 +129,15 @@ export const FooterArea = styled(BaseArea)`
   justify-content: center;
   align-items: center;
   color: #fff;
-  font-size: calc(1.25rem + (2 - 1) * ((100vw - 300px) / (1600 - 300)));
-  height: 5rem;
+  height: 100%;
   position: relative;
+  font-size: calc(1rem + 0.5 * ((100vw - 20rem) / (64.5 - 20)));
+  
+  `;
 
-  @media (min-width: 48rem) {
-    height: 100%;
-    font-size: calc(1.5rem + (2 - 1) * ((100vw - 300px) / (1600 - 300)));
-  }
-  @media (min-width: 64.5rem) {
-    height: 100%;
-    font-size: calc(2rem + (2 - 1) * ((100vw - 300px) / (1600 - 300)));
-  }
-`;
-
-export const Title = styled.div`
+export const Title = styled.h1`
 display: flex;
 justify-content: flex-start;
-align-items: center;
 margin-bottom: 0.625rem;
 `;
 
@@ -154,30 +145,21 @@ export const TitleLetter = styled.div`
 display: flex;
 justify-content: center;
 align-items: center;
-font-size: calc(2rem + 1.5 * ((100vw - 20rem) / (64.5 - 20))); // Scale for screens smaller than 64.5rem
-width: calc(2rem + 1.5 * ((100vw - 20rem) / (64.5 - 20)));
-height: calc(2rem + 1.5 * ((100vw - 20rem) / (64.5 - 20)));
+font-size: calc(2rem + 1 * ((100vw - 20rem) / (64.5 - 20)));
+width: calc(2rem + 1 * ((100vw - 20rem) / (64.5 - 20)));
+height: calc(2rem + 1 * ((100vw - 20rem) / (64.5 - 20)));
 font-family: 'Gilroy', sans-serif;
 font-weight: 800;
-
-@media (min-width: 64.5rem) { // Apply these styles for screens that are at least 64.5rem wide
-    font-size: calc(3.5rem + (2 - 3.5) * ((100vw - 300px) / (1600 - 300)));
-    width: 3.5rem;
-    height: 3.5rem;
-}
 `;
 
 export const NavLink = styled.a`
   text-decoration: none;
-  margin-bottom: 0.625rem;
+  margin-bottom: 0.8rem;
   font-family: 'Helvetica', sans-serif;
-  font-size: calc(0.5vw + 1rem);
+  font-size: calc(1rem + 0.5 * ((100vw - 20rem) / (64.5 - 20)));
   color: #fff;
   font-family: 'Gilroy', sans-serif;
   &:hover {
     color: #6A8A70;
-  }
-  @media (min-width: 74.875rem) {
-    margin-right: 1.25rem;
   }
 `;
