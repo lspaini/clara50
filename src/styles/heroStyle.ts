@@ -10,12 +10,14 @@ interface ImageAreaProps {
   export const HeroContainer = styled.div`
   display: flex;
   justify-content: center;
-  align-items: center;
   box-sizing: border-box;
   width: 100%;
   min-height: 100vh;
   position: relative;
   padding: 1rem;
+  @media (min-width: 48rem) {
+    align-items: center;
+  }
   `;
 
   export const HeroBackground = styled(GatsbyImage)`
@@ -25,7 +27,7 @@ interface ImageAreaProps {
   right: 0;
   bottom: 0;
   width: 100%;
-  height: 100vh;
+  height: 100%;
   filter: grayscale(100%);
 `;
 
@@ -37,7 +39,9 @@ export const HeroGrid = styled.div`
         "NavigationArea"
         "FooterArea";
     grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr;
     height: 100%;
+    width: 100%;
     gap: 0.3125rem;
     box-sizing: border-box;
     position: relative;
@@ -53,15 +57,16 @@ export const HeroGrid = styled.div`
             "NavigationArea NavigationArea ImageArea ImageArea"
             "NavigationArea NavigationArea FooterArea FooterArea";
         grid-template-columns: 2fr 2fr 1.5fr 1.5fr;
+        grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
         height: 80vh;
-        width: 70vw;
+        width: 70%;
         gap: 1rem;
     }
 `;
 
 export const BaseArea = styled.div`
   box-sizing: border-box;
-  padding: 1.5rem;
+  padding: 1.25rem;
   color: #fff;
   border: 0.3125rem solid #000;
   background: #000;
@@ -94,7 +99,6 @@ export const ImageArea = styled(BaseArea)`
   grid-area: ImageArea;
   position: relative; 
   overflow: hidden;
-  height: 100%;
   background: none;
 
   @media (min-width: 48rem) {
@@ -105,11 +109,16 @@ export const ImageArea = styled(BaseArea)`
 
 export const ImageAreaBackground = styled(GatsbyImage)<ImageAreaProps>`
   position: absolute;
-  left: calc(-${props => props.distanceToLeft}px - 0.8rem) ;
-  top: calc(-${props => props.distanceToTop}px - 0.3125rem) ;
-  object-fit: cover;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  @media (min-width: 48rem) {
+    left: calc(-${props => props.distanceToLeft}px - 0.625rem) ;
+    top: calc(-${props => props.distanceToTop}px - 0.3125rem) ;
   width: 100vw;
   height: 100vh;
+ }
   `
 
 export const FooterArea = styled(BaseArea)`
@@ -127,6 +136,10 @@ export const FooterArea = styled(BaseArea)`
   @media (min-width: 48rem) {
     height: 100%;
     font-size: calc(1.5rem + (2 - 1) * ((100vw - 300px) / (1600 - 300)));
+  }
+  @media (min-width: 64.5rem) {
+    height: 100%;
+    font-size: calc(2rem + (2 - 1) * ((100vw - 300px) / (1600 - 300)));
   }
 `;
 
