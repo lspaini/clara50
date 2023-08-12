@@ -56,7 +56,7 @@ const IndexPage: React.FC<IndexPageProps> = ({ data }) => {
             <ContentBox><h2>Basel wächst</h2><p>Der neu errichtete Bau an der Clarastrasse wird die Wohnungsanzahl von bisher vier auf insgesamt 13 steigern. Diese Wohnungen sind in unterschiedlichen Grössen verfügbar, wobei alle Grundrisse für eine optimale Raumausnutzung konzipiert sind. Dadurch gewährleisten selbst die kompaktesten Einheiten eine überdurchschnittliche Wohnqualität.</p></ContentBox>
             <ContentBox image={renderApImage} />
           </Boxes>
-          <Boxes>
+          <Boxes reverse>
             <ContentBox image={mapImage}/>
             <ContentBox> <h2>Am Messeplatz verankert</h2>
             <p>Das Gebäude in der Clarastrasse 50 liegt nur einen Steinwurf vom Messeplatz entfernt und in direkter Nachbarschaft zum Claraturm. Dank einer hervorragenden Anbindung an den öffentlichen Verkehr und einer Vielzahl an nahegelegenen Annehmlichkeiten – darunter Einkaufsmöglichkeiten, Restaurants und Fitnesscenter – profitieren die Bewohner*innen von einem komfortablen und lebendigen Stadtleben.</p>
@@ -103,12 +103,10 @@ Das Projekt begann mit einer einfachen Frage: Wie können wir die Clarastrasse a
             </ContentBox>
           </Boxes>
           </Section>
-        <Section id="partner" title="Partner" bgcolor="#000" color="#fff">
-          <Boxes>
-          {/* <Partners /> */}
-          </Boxes>
+        <Section id="partner" title="Partner" bgcolor="#000" color="#fff" >
+          <Partners />
         </Section>
-        <Footer />
+        {/* <Footer /> */}
       </Main>
       </ThemeProvider>
     </>

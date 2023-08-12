@@ -40,8 +40,6 @@ export default function Hero() {
     };
   }, []);
 
-      console.log(distanceToLeft, distanceToTop);
-
       return (
         <>
           <HeroContainer>

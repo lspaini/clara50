@@ -7,22 +7,18 @@ import { styled } from 'styled-components';
 
 const Grid = styled.div`
   display: grid;
-  height: 100%;
-  width: 100%;
   align-items: center;
   grid-template-columns: repeat(2, 1fr); 
-  gap: 1rem;
+  gap: 2rem;
   box-sizing: border-box;
-  border: 1px solid red;
-  
+  width: 100%;
   @media (min-width: 48rem) {
     gap: 4rem;
-    /* grid-template-columns: repeat(2, 1fr); */
+    grid-template-columns: repeat(4, 1fr);
   }
 `;
 
 const Logo = styled(GatsbyImage)`
-border: 1px solid yellow;
 
 & img{
   filter: grayscale(100%);
@@ -54,7 +50,7 @@ const Partners: React.FC = ({ }) => {
           return isSVG ? (
             <img key={index} src={edge.node.publicURL} alt={`Partner ${index + 1}`} />
           ) : (
-            image ? <Logo key={index} image={image} alt={`Partner ${index + 1}`} style={{ width: '100%' }} /> : null
+            image ? <Logo key={index} image={image} alt={`Partner ${index + 1}`} /> : null
           );
         })}
       </Grid>
