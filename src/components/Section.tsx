@@ -16,7 +16,6 @@ interface SectionProps {
   min-height: 100vh;
   background: ${props => props.bgcolor ?? 'inherit'};
   width: 100%;
-  background: green;
 `;
 
 const SectionContainer = styled.div`
@@ -25,7 +24,6 @@ const SectionContainer = styled.div`
   box-sizing: border-box;
   padding-left: 1rem;
   padding-right: 1rem;
-  background: blue;
   @media (min-width: 48rem) {
     padding-left: 6rem;
     padding-right: 6rem;

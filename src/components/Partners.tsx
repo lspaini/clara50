@@ -13,18 +13,14 @@ const Grid = styled.div`
   grid-template-columns: repeat(2, 1fr); 
   gap: 1rem;
   box-sizing: border-box;
-  background: yellow;
   
   @media (min-width: 48rem) {
     gap: 4rem;
     grid-template-columns: repeat(4, 1fr);
-    /* justify-content: center; */
-    /* align-items: center; */
   }
 `;
 
 const Logo = styled(GatsbyImage)`
-  background: red;
 & img{
   filter: grayscale(100%);
 }
