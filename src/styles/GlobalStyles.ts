@@ -16,6 +16,7 @@ const GlobalStyle = createGlobalStyle`
     font-style: normal;
   }
   html, body, #root {
+    background: #000;
     height: 100%;
     width: 100%;
     margin: 0;

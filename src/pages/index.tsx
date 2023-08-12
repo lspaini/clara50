@@ -2,7 +2,6 @@ import * as React from "react";
 import Hero from "../components/Hero";
 import GlobalStyle from '../styles/GlobalStyles';  // Adjust path as necessary
 import { styled } from "styled-components";
-import Section, { Boxes } from "../components/Section";
 import ContentBox from "../components/ContentBox";
 import Footer from "../components/Footer";
 import Partners from "../components/Partners";
@@ -10,6 +9,8 @@ import { ThemeProvider } from 'styled-components';
 import { theme } from '../styles/theme';
 import { graphql, PageProps } from 'gatsby';
 import { IGatsbyImageData } from 'gatsby-plugin-image';
+import Section from "../components/Section";
+import { Boxes } from "../styles/sectionStyle";
 
 interface ImageData {
   childImageSharp: {
@@ -91,7 +92,7 @@ Das Projekt begann mit einer einfachen Frage: Wie können wir die Clarastrasse a
           </Section>
         <Section id="partner" title="Partner" bgcolor="#000" color="#fff">
           <Boxes>
-          <Partners />
+          {/* <Partners /> */}
           </Boxes>
         </Section>
         <Footer />
