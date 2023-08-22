@@ -11,6 +11,7 @@ import { graphql, PageProps } from 'gatsby';
 import { IGatsbyImageData } from 'gatsby-plugin-image';
 import Section from "../components/Section";
 import { Boxes } from "../styles/sectionStyle";
+import Landing from "../components/Landing";
 
 interface ImageData {
   childImageSharp: {
@@ -44,13 +45,15 @@ const IndexPage: React.FC<IndexPageProps> = ({ data }) => {
   const mapImage = data.renderMap.childImageSharp.gatsbyImageData;
   const renderGastro = data.renderGastro.childImageSharp.gatsbyImageData;
   const renderClarastrasse = data.renderCl.childImageSharp.gatsbyImageData;
+  const clarastrasse = data.clara.childImageSharp.gatsbyImageData;
 
   return (
     <>
       <GlobalStyle />
       <ThemeProvider theme={theme}>
       <Main>
-        <Hero />
+        {/* <Hero /> */}
+        <Landing image={clarastrasse}/>
         <Section id="projekt" title="Projekt" bgcolor={theme.colors.primaryBg}>
           <Boxes>
             <ContentBox><h2>Basel wächst</h2><p>Der neu errichtete Bau an der Clarastrasse wird die Wohnungsanzahl von bisher vier auf insgesamt 13 steigern. Diese Wohnungen sind in unterschiedlichen Grössen verfügbar, wobei alle Grundrisse für eine optimale Raumausnutzung konzipiert sind. Dadurch gewährleisten selbst die kompaktesten Einheiten eine überdurchschnittliche Wohnqualität.</p></ContentBox>
@@ -133,6 +136,11 @@ export const pageQuery = graphql`
       }
     }
     renderGastro: file(relativePath: { eq: "CAM3_copia_2.jpg" }) {
+      childImageSharp {
+        gatsbyImageData(layout: CONSTRAINED, width: 1200, height: 1000)
+      }
+    }
+    clara: file(relativePath: { eq: "Clarastrasse.png" }) {
       childImageSharp {
         gatsbyImageData(layout: CONSTRAINED, width: 1200, height: 1000)
       }
