@@ -25,6 +25,7 @@ interface IndexPageProps extends PageProps {
     renderMap: ImageData;
     renderGastro: ImageData;
     renderCl: ImageData;
+    clara: ImageData;
   };
 }
 
@@ -51,9 +52,9 @@ const IndexPage: React.FC<IndexPageProps> = ({ data }) => {
     <>
       <GlobalStyle />
       <ThemeProvider theme={theme}>
-      <Main>
-        {/* <Hero /> */}
         <Landing image={clarastrasse}/>
+      <Main>
+        <Hero />
         <Section id="projekt" title="Projekt" bgcolor={theme.colors.primaryBg}>
           <Boxes>
             <ContentBox><h2>Basel wächst</h2><p>Der neu errichtete Bau an der Clarastrasse wird die Wohnungsanzahl von bisher vier auf insgesamt 13 steigern. Diese Wohnungen sind in unterschiedlichen Grössen verfügbar, wobei alle Grundrisse für eine optimale Raumausnutzung konzipiert sind. Dadurch gewährleisten selbst die kompaktesten Einheiten eine überdurchschnittliche Wohnqualität.</p></ContentBox>
