@@ -56,7 +56,7 @@ const IndexPage: React.FC<IndexPageProps> = ({ data }) => {
         <Landing image={ClaraStrasse}/>
       <Main>
         {/* <Hero /> */}
-        <Section id="projekt" title="Projekt" bgcolor={theme.colors.primaryBg}>
+        {/* <Section id="projekt" title="Projekt" bgcolor={theme.colors.primaryBg}>
           <Boxes>
             <ContentBox><h2>Basel wächst</h2><p>Der neu errichtete Bau an der Clarastrasse wird die Wohnungsanzahl von bisher vier auf insgesamt 13 steigern. Diese Wohnungen sind in unterschiedlichen Grössen verfügbar, wobei alle Grundrisse für eine optimale Raumausnutzung konzipiert sind. Dadurch gewährleisten selbst die kompaktesten Einheiten eine überdurchschnittliche Wohnqualität.</p></ContentBox>
             <ContentBox image={renderApImage} />
@@ -82,8 +82,8 @@ const IndexPage: React.FC<IndexPageProps> = ({ data }) => {
 </p></ContentBox>
 <ContentBox justifycontent="flex-start"><h2>Leben Sichtbar machen.</h2><p>Die Architektur strebt danach, die Vitalität des Gebäudeinneren nach aussen zu reflektieren und so eine lebendige Außenwirkung zu erzeugen. Mit der Fassadenbegrünung wird ein ästhetischer Sichtschutz geschaffen, der das Zuziehen von Vorhängen überflüssig macht und so einen anonymen Gebäudecharakter vermeidet.</p></ContentBox>
           </Boxes>
-        </Section>
-        <Section id="ueberuns" title="Über uns" bgcolor={theme.colors.primaryBg}>
+        </Section> */}
+        {/* <Section id="ueberuns" title="Über uns" bgcolor={theme.colors.primaryBg}>
           <Boxes>
             <ContentBox justifycontent="flex-start"><h2>Wir sind Livio und Flavio.</h2><p>Basel ist unsere Heimat, und es freut uns besonders, dieses Projekt an solch einer zentralen Stelle verwirklichen zu dürfen. Die Möglichkeit, in unserer Stadt etwas Neues zu gestalten, haben wir mit Sorgfalt und Engagement angepackt.<br/> <br/>
 
@@ -107,10 +107,10 @@ Das Projekt begann mit einer einfachen Frage: Wie können wir die Clarastrasse a
               </p>
             </ContentBox>
           </Boxes>
-          </Section>
-        <Section id="partner" title="Partner" bgcolor="#000" color="#fff" >
+          </Section> */}
+        {/* <Section id="partner" title="Partner" bgcolor="#000" color="#fff" >
           <Partners />
-        </Section>
+        </Section> */}
         {/* <Footer /> */}
       </Main>
       </ThemeProvider>

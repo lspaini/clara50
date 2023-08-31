@@ -1,154 +1,196 @@
-import React from 'react';
-import { GatsbyImage, IGatsbyImageData } from 'gatsby-plugin-image';
 import styled from 'styled-components';
 import { motion, useTransform, useScroll } from 'framer-motion';
 import Street from '../images/street.png';
 import Middle from '../images/middle.png';
 import Sky from '../images/sky.png';
-import { useState, useEffect } from 'react';
+import Full from '../images/full.png';
+import React, { useEffect, useState, useRef, RefObject } from 'react';
 
 const LandingContainer = styled.div`
-  height: 1000vh;
+  height: 550vh;
   width: 100%;
   z-index: -1;
 `;
 
-/**
- * Container for the landing page image.
- */
+
 const LandingImageContainer = styled(motion.div)`
-  position: fixed;
-  top: -10%;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  display: flex;
-  align-items: center; // Centers the child vertically
-  justify-content: center; // Centers the child horizontally
-  /* scale: 0.5; */
-  @media (min-width: 48rem) { // 768px
-    /* top: -300px; */
-    /* scale: 1.5; */
-    right: 0;
-  }
-  @media (min-width: 64rem) { // 1024px
-  }
-  @media (min-width: 90rem) { // 1440px
-  }
-  @media (min-width: 120rem) { // 1920px
-  }
-  @media (min-width: 160rem) { // 2560px
-  }
-  @media (min-width: 240rem) { // 3840px
-    /* top: -62.5rem; // -1000px */
-    /* scale: 3; */
-  }
-  @media (min-width: 320rem) { // 5120px
+    position: fixed;
+    bottom: 0;
+    /* width: 100%; */
+    /* height: 100%; */
+    display: flex;
+    align-items: center;
+    justify-content: center; 
+    @media (min-width: 576px) {
+      transform-origin: bottom;
+
   }
 `;
-
-const TitleContainer = styled.div`
-display: flex;
-flex-direction: column;
-justify-content: center;
-align-items: center;
-`
-const Title = styled.h1<{ bottom: number}>`
-  position: absolute;
-  bottom: ${(props) => props.bottom}px;
-  margin-bottom: 2rem;
-  color: #fff;
-  padding: 4rem;
-  font-size: 3rem;
-  box-sizing: border-box;
-  border: 1px solid white;
-  font-family: 'Gilroy', sans-serif;
-  font-weight: 200;
-  min-width: 400px;
-  min-height: 50px;
-  display: flex;
-  align-items: center;
-  justify-content: center;  
-  border: 1px solid #fff;
-  backdrop-filter: blur(6px);
-`;
-
-const ScrollPrompt = styled.p`
-color: #fff;
-`
 
 const ImageGrid = styled.div`
+display: none;
+@media (min-width: 576px) {
 display: flex;
 flex-direction: column;
 justify-content: center;
 align-items: center;
 box-sizing: border-box;
 width: 100%;
-height: 100%;
+  }
 `;
 
 const Image = styled.img`
-/* max-inline-size: 100%; */
-/* block-size: auto; */
-/* aspect-ratio: 2/1; */
-/* object-fit: cover; */
 width: 100%;
 `;
 
-interface ContentBoxProps {
-  image: string;
-}
+const MobileImage = styled.img`
+width: 100%;
+@media (min-width: 576px) {
+ display: none;
+  }
+`
 
-function useWindowHeight() {
-  const [windowHeight, setWindowHeight] = useState(window.innerHeight);
+const TitleContainer = styled.div`
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+height: 100vh;
+margin-bottom: 20rem;
+`
+const Title = styled.div<{ bottom: number}>`
+  bottom: ${(props) => props.bottom}px;
+  color: #fff;
+  padding: 2rem;
+  font-size: 3rem;
+  box-sizing: border-box;
+  border: 1px solid white;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;  
+  border: 1px solid #fff;
+  backdrop-filter: blur(6px);
+  display: flex;
+  flex-direction: column;
+  @media (min-width: 576px) {
+    min-width: 25rem; // 400px / 16px = 25rem
+    min-height: 3.125rem; // 50px / 16px = 3.125rem
+    font-size: 3rem;
+    padding: 4rem;
+  }
+`;
+
+const Container = styled.div`
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+`
+
+const ScrollPrompt = styled.p`
+color: #fff;
+font-size: 2rem;
+`
+
+type LandingProps = {
+  image: string;
+};
+
+// Custom hook to get window width
+const useWindowWidth = () => {
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
   useEffect(() => {
-    function handleResize() {
-      setWindowHeight(window.innerHeight);
-    }
-
+    const handleResize = () => setWindowWidth(window.innerWidth);
     window.addEventListener('resize', handleResize);
-    return () => {
-      window.removeEventListener('resize', handleResize);
-    };
+
+    return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  return windowHeight;
-}
+  return windowWidth;
+};
 
-export default function Landing({ image }: ContentBoxProps) {
-  const windowHeight = useWindowHeight();
+// Custom hook to get distance to bottom
+const useDistanceToBottom = (imageRef: RefObject<HTMLImageElement>) => {
+  const [distanceToBottom, setDistanceToBottom] = useState(0);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (imageRef.current) {
+        const distance = window.innerHeight - imageRef.current.getBoundingClientRect().bottom;
+        setDistanceToBottom(distance);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [imageRef]);
+
+  return distanceToBottom;
+};
+
+// Custom hook to get distance to top
+const useDistanceToTop = (imageRef: RefObject<HTMLImageElement>) => {
+  const [distanceToTop, setDistanceToTop] = useState(0);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (imageRef.current) {
+        const distance = imageRef.current.getBoundingClientRect().top;
+        setDistanceToTop(distance);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [imageRef]);
+
+  return distanceToTop;
+};
+
+
+const setScaleAndTranslate = (windowWidth: number, distanceToBottom: number, distanceToTop: number) => {
+
+  
+  // Set default values
+  let scaleValues = [3, 2, 2, 2, 2, 3];
+  let translateYValues = [windowWidth * -1.4, windowWidth * -0.8, windowWidth * -0.6, windowWidth * -0.4, windowWidth * -0.2, windowWidth * 1.2];
+
+  if (windowWidth >= 576) {
+    scaleValues = [2, 1.5, 1.5, 1.5, 1.5, 2];
+    translateYValues = [windowWidth * 0, windowWidth * 0.2, windowWidth * 0.6, windowWidth * 0.8, windowWidth * 1.3, windowWidth * 2.4];
+  }
+
+  return { scaleValues, translateYValues };
+};
+
+
+const Landing: React.FC<LandingProps> = ({ image }: LandingProps) => {
+  const windowWidth = useWindowWidth();
+  const imageRef = useRef<HTMLImageElement | null>(null);
+  const distanceToBottom = useDistanceToBottom(imageRef);
+  const distanceToTop = useDistanceToTop(imageRef);
   const { scrollYProgress } = useScroll();
-  const scale = useTransform(scrollYProgress, [0, 0.1, 0.3, 0.4, 0.5], [2, 1, 1, 1, 3]); 
-  const translateY = useTransform(scrollYProgress, [0, 0.1, 0.3, 0.4, 0.5], [windowHeight * -2.2, windowHeight * -0.7, windowHeight * -0.4, windowHeight *0.2, windowHeight * 2]);
+
+  const { scaleValues, translateYValues } = setScaleAndTranslate(windowWidth, distanceToBottom, distanceToTop);
+  const scale = useTransform(scrollYProgress, [0, 0.3, 0.5, 0.6, 0.7, 1], scaleValues);
+  const translateY = useTransform(scrollYProgress, [0, 0.3, 0.5, 0.6, 0.7, 1], translateYValues);
 
   return (
     <LandingContainer>
-      <LandingImageContainer
-        className="container"
-        style={{
-          scale,
-          translateY, // Apply translateY transformation
-        }}
-      >
-                  <ImageGrid>
-        <Image src={Sky} alt="clarastrasse" />
-        <Image 
-          src={Middle} 
-          alt="clarastrasse" 
-          loading="lazy"
-        
-        />
-        <Image src={Street} alt="clarastrasse" />
-    </ImageGrid>
-            </LandingImageContainer>
-            <TitleContainer>
-              <Title bottom={0}>Clarastrasse 50</Title>
-              <ScrollPrompt>Scroll down</ScrollPrompt>
-              <Title bottom={-2500} >Gastro</Title>
-              <Title bottom={-3800} >Coworking</Title>
-              <Title bottom={-5000}>13 Wohnungen</Title>
-              </TitleContainer>
-            </LandingContainer>
-          );
-        }
+      <LandingImageContainer className="container" style={{ scale, translateY }}>
+        <MobileImage src={Full} alt="clarastrasse" />
+        <ImageGrid ref={imageRef}>
+          <Image src={Sky} alt="clarastrasse" />
+          <Image src={Middle} alt="clarastrasse" loading="lazy" />
+          <Image src={Street} alt="clarastrasse" />
+        </ImageGrid>
+      </LandingImageContainer>
+    </LandingContainer>
+  );
+};
+
+export default Landing;
