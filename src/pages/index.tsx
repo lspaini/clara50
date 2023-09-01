@@ -108,9 +108,9 @@ Das Projekt begann mit einer einfachen Frage: Wie können wir die Clarastrasse a
             </ContentBox>
           </Boxes>
           </Section> */}
-        {/* <Section id="partner" title="Partner" bgcolor="#000" color="#fff" >
+        <Section id="partner" title="Partner" bgcolor="#000" color="#fff" >
           <Partners />
-        </Section> */}
+        </Section>
         {/* <Footer /> */}
       </Main>
       </ThemeProvider>

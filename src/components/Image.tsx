@@ -15,8 +15,8 @@ height: 100%;
 `;
 
 const Image = styled.img`
-max-inline-size: 100%;
-block-size: auto;
+/* max-inline-size: 100%; */
+/* block-size: auto; */
 /* aspect-ratio: 2/1; */
 /* object-fit: cover; */
 `;
