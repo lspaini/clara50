@@ -51,7 +51,7 @@ const LandingImageContainer = styled.div`
   top: 0;
   left: 0;
   width: 100%;
-  height: 100%;
+  height: 100vh;
   background: url(${Full});
   background-repeat: no-repeat;
   background-position-x: center;
