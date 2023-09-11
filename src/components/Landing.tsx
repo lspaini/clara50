@@ -3,7 +3,7 @@ import Full from '../images/full.png';
 import React, { useEffect, useState } from 'react';
 
 const LandingContainer = styled.div`
-  height: 600vh;
+  height: 470vh;
   width: 100%;
   z-index: -1;
 `;
@@ -21,7 +21,7 @@ z-index: 1;
 const Title = styled.h1<{ bottom: number}>`
   bottom: ${(props) => props.bottom}px;
   color: #fff;
-  padding: 2rem;
+  padding: 10%;
   font-size: 3rem;
   box-sizing: border-box;
   border: 1px solid white;
@@ -37,7 +37,7 @@ const Title = styled.h1<{ bottom: number}>`
     min-width: 25rem;
     min-height: 3.125rem;
     font-size: 3rem;
-    padding: 4rem;
+    padding: 10%;
   }
 `;
 
@@ -52,7 +52,6 @@ const LandingImageContainer = styled.div`
   background: url(${Full});
   background-repeat: no-repeat;
   background-position-x: center;
-  border: 5px solid blue;
   box-sizing: border-box;
 `;
 
@@ -60,7 +59,7 @@ type LandingProps = {
   image: string;
 };
 
-const getImageAspectRatio = (src) => {
+const getImageAspectRatio = (src: string) => {
   return new Promise((resolve, reject) => {
     const img = new Image();
     img.src = src;
@@ -73,33 +72,42 @@ const getImageAspectRatio = (src) => {
 };
 
 
-const Landing: React.FC<LandingProps> = ({ image }: LandingProps) => {
+/**
+ * Landing component that displays a background image that adjusts its size and position based on scrolling and window dimensions.
+ * @returns React functional component
+ */
+const Landing: React.FC = () => {
   const initialBgSize = 300;
-  const [minHeight, setMinHeight] = useState(window.innerHeight);
-  const [minWidth, setMinWidth] = useState(window.innerWidth);
+  const [minHeight, setMinHeight] = useState<number | null>(null);
+  const [minWidth, setMinWidth] = useState<number | null>(null);
+
   const [bgSize, setBgSize] = useState(`${initialBgSize}%`);
   const [bgPosY, setBgPosY] = useState('100%');
   const [shouldCover, setShouldCover] = useState(false);
 
+  
+
   const logDimensionsAndAspectRatio = () => {
     // Log background image dimensions and aspect ratio
     const newBgSize = parseFloat(bgSize);
-    const newWidth = minWidth * (newBgSize / 100);
-    const newHeight = minHeight * (newBgSize / 100);
+    const newWidth = minWidth ? (minWidth * (newBgSize / 100)) : 0;
+    const newHeight = minHeight ? (minHeight * (newBgSize / 100)) : 0;
     const imageAspectRatio = newWidth / newHeight;
     console.log(`New background image dimensions: Width = ${newWidth}px, Height = ${newHeight}px, Aspect Ratio = ${imageAspectRatio}`);
 
     // Log LandingImageContainer dimensions and aspect ratio
-    const containerAspectRatio = minWidth / minHeight;
+    const containerAspectRatio = (minWidth && minHeight) ? (minWidth / minHeight) : 1;
+
     console.log(`LandingImageContainer dimensions: Width = ${minWidth}px, Height = ${minHeight}px, Aspect Ratio = ${containerAspectRatio}`);
   };
+
 
   const handleResize = () => {
     setMinHeight(window.innerHeight);
     setMinWidth(window.innerWidth);
 
     // Calculate container aspect ratio
-    const containerAspectRatio = minWidth / minHeight;
+    const containerAspectRatio = (minWidth && minHeight) ? (minWidth / minHeight) : 1;
 
     if (containerAspectRatio < 0.5496) {
       setShouldCover(true);
@@ -107,7 +115,7 @@ const Landing: React.FC<LandingProps> = ({ image }: LandingProps) => {
       setShouldCover(false);
     }
 
-    logDimensionsAndAspectRatio();
+    // logDimensionsAndAspectRatio();
   };
 
   const handleScroll = () => {
@@ -129,25 +137,35 @@ const Landing: React.FC<LandingProps> = ({ image }: LandingProps) => {
       setBgPosY(`${Math.max(newY, 0)}%`);
     }
 
-    logDimensionsAndAspectRatio();
+    // logDimensionsAndAspectRatio();
   };
 
   useEffect(() => {
-    getImageAspectRatio(Full)
-      .then((aspectRatio) => {
-        console.log("Image Aspect Ratio: ", aspectRatio);
-      })
-      .catch((error) => {
-        console.error("Error getting image: ", error);
-      });
-
-    window.addEventListener('resize', handleResize);
-    window.addEventListener('scroll', handleScroll);
-
-    return () => {
-      window.removeEventListener('resize', handleResize);
-      window.removeEventListener('scroll', handleScroll);
-    };
+    // Check if running in browser environment
+    if (typeof window !== 'undefined') {
+      // Set initial dimensions
+      setMinHeight(window.innerHeight);
+      setMinWidth(window.innerWidth);
+  
+      // Fetch and handle image aspect ratio
+      getImageAspectRatio(Full)
+        .then((aspectRatio) => {
+          console.log("Image Aspect Ratio: ", aspectRatio);
+        })
+        .catch((error) => {
+          console.error("Error getting image: ", error);
+        });
+  
+      // Your existing event listeners
+      window.addEventListener('resize', handleResize);
+      window.addEventListener('scroll', handleScroll);
+  
+      // Cleanup function
+      return () => {
+        window.removeEventListener('resize', handleResize);
+        window.removeEventListener('scroll', handleScroll);
+      };
+    }
   }, [bgSize, shouldCover, minHeight, minWidth]);
 
   useEffect(() => {
@@ -187,7 +205,7 @@ const Landing: React.FC<LandingProps> = ({ image }: LandingProps) => {
             <Title bottom={-3800} >Coworking</Title>
           </TitleContainer>
           <TitleContainer>
-            <Title bottom={-5000}>13 Wohnungen</Title>
+            <Title bottom={-5000}>Wohnungen</Title>
           </TitleContainer>
       </LandingContainer>
   );
