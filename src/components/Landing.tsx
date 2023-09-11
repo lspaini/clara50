@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import Full from '../images/full.png';
+import Full from '../images/full_high.png';
 import React, { useEffect, useState } from 'react';
 
 const LandingContainer = styled.div`
@@ -82,80 +82,52 @@ const getImageAspectRatio = (src: string) => {
  * @returns React functional component
  */
 const Landing: React.FC = () => {
-  const initialBgSize = 300;
+  
+  // Zoom Options
+  const initialBgSize = 250;
+  const lowPercentageThreshold = 20;
+  const highPercentageThreshold = 60;
+  const minBgSize = 100;
+
   const [minHeight, setMinHeight] = useState<number | null>(null);
   const [minWidth, setMinWidth] = useState<number | null>(null);
-
+  
   const [bgSize, setBgSize] = useState(`${initialBgSize}%`);
   const [bgPosY, setBgPosY] = useState('100%');
-  const [shouldCover, setShouldCover] = useState(false);
-
   
 
-  /**
-   * Logs the dimensions and aspect ratio of the background image and the LandingImageContainer.
-   * @returns void
-   */
-  const logDimensionsAndAspectRatio = () => {
-    // Log background image dimensions and aspect ratio
-    const newBgSize = parseFloat(bgSize);
-    const newWidth = minWidth ? (minWidth * (newBgSize / 100)) : 0;
-    const newHeight = minHeight ? (minHeight * (newBgSize / 100)) : 0;
-    const imageAspectRatio = newWidth / newHeight;
-    console.log(`New background image dimensions: Width = ${newWidth}px, Height = ${newHeight}px, Aspect Ratio = ${imageAspectRatio}`);
-
-    // Log LandingImageContainer dimensions and aspect ratio
-    const containerAspectRatio = (minWidth && minHeight) ? (minWidth / minHeight) : 1;
-
-    console.log(`LandingImageContainer dimensions: Width = ${minWidth}px, Height = ${minHeight}px, Aspect Ratio = ${containerAspectRatio}`);
-  };
-
-
-  /**
-   * Handles the resize event of the window and updates the state variables accordingly.
-   * Also calculates the container aspect ratio and sets the `shouldCover` state variable
-   * based on whether the aspect ratio is less than 0.5496 or not.
-   */
-  const handleResize = () => {
-    setMinHeight(window.innerHeight);
-    setMinWidth(window.innerWidth);
-
-    // Calculate container aspect ratio
-    const containerAspectRatio = (minWidth && minHeight) ? (minWidth / minHeight) : 1;
-
-    if (containerAspectRatio < 0.5496) {
-      setShouldCover(true);
-    } else {
-      setShouldCover(false);
-    }
-
-    // logDimensionsAndAspectRatio();
-  };
 
   /**
    * Handles the scroll event and updates the background size and position based on the scroll percentage.
-   * @returns void
    */
   const handleScroll = () => {
+    // Calculate Scroll Height and Scroll Percentage
     const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
     const scrollPercentage = (window.scrollY / scrollHeight) * 100;
-
-    if (!shouldCover) {
-      if (scrollPercentage < 20) {
-        const newSize = initialBgSize - (scrollPercentage / 20) * (initialBgSize - 100);
-        setBgSize(`${Math.max(newSize, 100)}%`);
-      } else if (scrollPercentage >= 20 && scrollPercentage < 60) {
-        setBgSize('100%');
+  
+    // Helper function to adjust background size
+    const adjustBgSize = (percentage:number) => {
+      let newSize;
+      if (percentage < lowPercentageThreshold) {
+        newSize = initialBgSize - (percentage / lowPercentageThreshold) * (initialBgSize - minBgSize);
+        return Math.max(newSize, minBgSize);
+      } else if (percentage >= lowPercentageThreshold && percentage < highPercentageThreshold) {
+        return minBgSize;
       } else {
-        const newSize = 100 + ((scrollPercentage - 60) / 20) * (initialBgSize - 100);
-        setBgSize(`${Math.min(newSize, initialBgSize)}%`);
+        newSize = minBgSize + ((percentage - highPercentageThreshold) / (100 - highPercentageThreshold)) * (initialBgSize - minBgSize);
+        return Math.min(newSize, initialBgSize);
       }
-
-      const newY = 100 - (scrollPercentage / 100) * 100;
-      setBgPosY(`${Math.max(newY, 0)}%`);
-    }
-
-    // logDimensionsAndAspectRatio();
+    };
+  
+    // Helper function to adjust background position Y
+    const adjustBgPosY = (percentage:number) => {
+      const newY = 100 - (percentage / 100) * 100;
+      return Math.max(newY, 0);
+    };
+  
+    // Set background size and position
+    setBgSize(`${adjustBgSize(scrollPercentage)}%`);
+    setBgPosY(`${adjustBgPosY(scrollPercentage)}%`);
   };
 
   useEffect(() => {
@@ -175,36 +147,16 @@ const Landing: React.FC = () => {
         });
   
       // Your existing event listeners
-      window.addEventListener('resize', handleResize);
       window.addEventListener('scroll', handleScroll);
   
       // Cleanup function
       return () => {
-        window.removeEventListener('resize', handleResize);
         window.removeEventListener('scroll', handleScroll);
       };
     }
-  }, [bgSize, shouldCover, minHeight, minWidth]);
-
-  useEffect(() => {
-    
-    // Logic to adjust bgSize based on scrolling (if needed)
-    const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
-    const scrollPercentage = (window.scrollY / scrollHeight) * 100;
+  }, [bgSize, minHeight, minWidth]);
   
-    if (scrollPercentage < 20) {
-      const newSize = initialBgSize - (scrollPercentage / 20) * (initialBgSize - 100);
-      setBgSize(`${Math.max(newSize, 100)}%`);
-    } else if (scrollPercentage >= 20 && scrollPercentage < 60) {
-      setBgSize('100%');
-    } else {
-      const newSize = 100 + ((scrollPercentage - 60) / 40) * (initialBgSize - 100);
-      setBgSize(`${Math.min(newSize, initialBgSize)}%`);
-    }
   
-    const newY = 100 - (scrollPercentage / 100) * 100;
-    setBgPosY(`${Math.max(newY, 0)}%`);
-  }, [bgSize, initialBgSize]);
   
 
   return (
