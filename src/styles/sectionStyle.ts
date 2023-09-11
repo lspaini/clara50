@@ -19,6 +19,7 @@ align-items: center;
 min-height: 100vh;
 background: ${props => props.bgcolor ?? 'inherit'};
 width: 100%;
+z-index: 1;
 `;
 
 export const SectionContainer = styled.div`
