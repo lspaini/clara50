@@ -22,22 +22,25 @@ const Title = styled.h1<{ bottom: number}>`
   bottom: ${(props) => props.bottom}px;
   color: #fff;
   padding: 10%;
-  font-size: 3rem;
   box-sizing: border-box;
-  border: 1px solid white;
   font-size: 1rem;
   display: flex;
   align-items: center;
   justify-content: center;  
   border: 1px solid #fff;
   backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
   display: flex;
+  letter-spacing: 0.1rem;
   flex-direction: column;
+  @media (min-width: 375px) {
+    font-size: 2rem;
+  }
   @media (min-width: 576px) {
-    min-width: 25rem;
+    min-width: 10rem;
     min-height: 3.125rem;
     font-size: 3rem;
-    padding: 10%;
+    padding: 4rem 5.5rem;
   }
 `;
 
@@ -55,10 +58,12 @@ const LandingImageContainer = styled.div`
   box-sizing: border-box;
 `;
 
-type LandingProps = {
-  image: string;
-};
 
+/**
+ * Returns the aspect ratio of an image given its source URL.
+ * @param src - The source URL of the image.
+ * @returns A promise that resolves with the aspect ratio of the image.
+ */
 const getImageAspectRatio = (src: string) => {
   return new Promise((resolve, reject) => {
     const img = new Image();
@@ -87,6 +92,10 @@ const Landing: React.FC = () => {
 
   
 
+  /**
+   * Logs the dimensions and aspect ratio of the background image and the LandingImageContainer.
+   * @returns void
+   */
   const logDimensionsAndAspectRatio = () => {
     // Log background image dimensions and aspect ratio
     const newBgSize = parseFloat(bgSize);
@@ -102,6 +111,11 @@ const Landing: React.FC = () => {
   };
 
 
+  /**
+   * Handles the resize event of the window and updates the state variables accordingly.
+   * Also calculates the container aspect ratio and sets the `shouldCover` state variable
+   * based on whether the aspect ratio is less than 0.5496 or not.
+   */
   const handleResize = () => {
     setMinHeight(window.innerHeight);
     setMinWidth(window.innerWidth);
@@ -118,6 +132,10 @@ const Landing: React.FC = () => {
     // logDimensionsAndAspectRatio();
   };
 
+  /**
+   * Handles the scroll event and updates the background size and position based on the scroll percentage.
+   * @returns void
+   */
   const handleScroll = () => {
     const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
     const scrollPercentage = (window.scrollY / scrollHeight) * 100;
@@ -169,28 +187,25 @@ const Landing: React.FC = () => {
   }, [bgSize, shouldCover, minHeight, minWidth]);
 
   useEffect(() => {
-    // Update the background size based on shouldCover
-    if (shouldCover) {
-      setBgSize('cover');
+    
+    // Logic to adjust bgSize based on scrolling (if needed)
+    const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const scrollPercentage = (window.scrollY / scrollHeight) * 100;
+  
+    if (scrollPercentage < 20) {
+      const newSize = initialBgSize - (scrollPercentage / 20) * (initialBgSize - 100);
+      setBgSize(`${Math.max(newSize, 100)}%`);
+    } else if (scrollPercentage >= 20 && scrollPercentage < 60) {
+      setBgSize('100%');
     } else {
-      // Logic to adjust bgSize based on scrolling (if needed)
-      const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
-      const scrollPercentage = (window.scrollY / scrollHeight) * 100;
-
-      if (scrollPercentage < 20) {
-        const newSize = initialBgSize - (scrollPercentage / 20) * (initialBgSize - 100);
-        setBgSize(`${Math.max(newSize, 100)}%`);
-      } else if (scrollPercentage >= 20 && scrollPercentage < 60) {
-        setBgSize('100%');
-      } else {
-        const newSize = 100 + ((scrollPercentage - 60) / 20) * (initialBgSize - 100);
-        setBgSize(`${Math.min(newSize, initialBgSize)}%`);
-      }
-
-      const newY = 100 - (scrollPercentage / 100) * 100;
-      setBgPosY(`${Math.max(newY, 0)}%`);
+      const newSize = 100 + ((scrollPercentage - 60) / 40) * (initialBgSize - 100);
+      setBgSize(`${Math.min(newSize, initialBgSize)}%`);
     }
-  }, [bgSize, shouldCover, initialBgSize]);
+  
+    const newY = 100 - (scrollPercentage / 100) * 100;
+    setBgPosY(`${Math.max(newY, 0)}%`);
+  }, [bgSize, initialBgSize]);
+  
 
   return (
     <LandingContainer>
