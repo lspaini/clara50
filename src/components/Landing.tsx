@@ -7,7 +7,7 @@ import { LandingContainer, LandingImageContainer, TitleContainer, Title } from '
  * @param src - The source URL of the image.
  * @returns A promise that resolves with the aspect ratio of the image.
  */
-const getImageAspectRatio = (src: string) => {
+const getImageAspectRatio = (src: string): Promise<number> => {
   return new Promise((resolve, reject) => {
     const img = new Image();
     img.src = src;
@@ -18,6 +18,12 @@ const getImageAspectRatio = (src: string) => {
     img.onerror = reject;
   });
 };
+
+// get aspect ratio of the viewport (window), even when resized, and put it in the console.
+window.addEventListener('resize', () => {
+  const aspectRatio = window.innerWidth / window.innerHeight;
+  console.log("Viewport AR: ", aspectRatio);
+});
 
 
 
@@ -31,13 +37,14 @@ const Landing: React.FC = () => {
   const initialBgSize = 250;
   const lowPercentageThreshold = 20;
   const highPercentageThreshold = 60;
-  const minBgSize = 100;
 
   const [minHeight, setMinHeight] = useState<number | null>(null);
   const [minWidth, setMinWidth] = useState<number | null>(null);
   
   const [bgSize, setBgSize] = useState(`${initialBgSize}%`);
   const [bgPosY, setBgPosY] = useState('100%');
+
+  const [minBgSize, setMinBgSize] = useState(100);
   
 
 
@@ -77,19 +84,27 @@ const Landing: React.FC = () => {
   useEffect(() => {
     // Check if running in browser environment
     if (typeof window !== 'undefined') {
+
+      const aspectRatioWindow = window.innerWidth / window.innerHeight;
       // Set initial dimensions
       setMinHeight(window.innerHeight);
       setMinWidth(window.innerWidth);
   
-      // Fetch and handle image aspect ratio
       getImageAspectRatio(Full)
-        .then((aspectRatio) => {
-          console.log("Image Aspect Ratio: ", aspectRatio);
-        })
-        .catch((error) => {
-          console.error("Error getting image: ", error);
-        });
-  
+      .then((aspectRatioImage) => {
+        console.log("Image Aspect Ratio: ", aspectRatioImage);
+        
+        // Calculate minimum zoom level needed for "cover" effect.
+        const minCoverSize = aspectRatioWindow > aspectRatioImage
+          ? (window.innerHeight / window.innerWidth) * aspectRatioImage * 350
+          : (window.innerWidth / window.innerHeight) / aspectRatioImage * 250;
+
+        // Set this size as your new minimum size
+        setMinBgSize(minCoverSize);
+      })
+      .catch((error) => {
+        console.error("Error getting image: ", error);
+      });
       // Your existing event listeners
       window.addEventListener('scroll', handleScroll);
   
