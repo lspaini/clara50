@@ -52,5 +52,6 @@ export const LandingImageContainer = styled.div<{ image: string}>`
     background: url(${(props) => props.image});
     background-repeat: no-repeat;
     background-position-x: center;
+    background-size: cover;
     box-sizing: border-box;
 `;
