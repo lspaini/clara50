@@ -93,7 +93,7 @@ Das Projekt begann mit einer einfachen Frage: Wie können wir die Clarastrasse a
 
  </p></ContentBox>
             <ContentBox justifycontent="flex-start">
-              <h2>Impressum</h2>
+              <h2>Kontakt</h2>
               <p>
                 Flavio Spaini <br />
                 Meret Oppenheim Strasse 6 <br />

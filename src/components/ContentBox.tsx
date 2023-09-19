@@ -27,7 +27,7 @@ const StyledContentBox = styled.div<ContentBoxProps>`
     margin-bottom: 5px;
   }
   
-  @media (min-width: 48rem) {
+  /* @media (min-width: 48rem) {
     text-align: justify;
     line-height: 1.5;
     margin-bottom: 4rem;
@@ -46,7 +46,7 @@ const StyledContentBox = styled.div<ContentBoxProps>`
     width: 100%;
     height: 100%;
     z-index: -1; // to place the image behind the content
-  }
+  } */
 `;
 
 const ContentBox: React.FC<ContentBoxProps> = ({ image, children, altImage = '', justifycontent }) => {

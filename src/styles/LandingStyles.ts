@@ -46,11 +46,11 @@ export const Title = styled.h1<{ bottom: number}>`
     @media (min-width: 375px) {
         font-size: 2rem;
     }
-    @media (min-width: 576px) {
+    /* @media (min-width: 576px) {
         min-width: 10rem;
         min-height: 3.125rem;
         font-size: 3rem;
-    }
+    } */
 `;
 export const MainTitle = styled.h1<{ bottom: number}>`
     bottom: ${(props) => props.bottom}px;
@@ -67,10 +67,16 @@ export const MainTitle = styled.h1<{ bottom: number}>`
         font-size: 2rem;
     }
     @media (min-width: 576px) {
-        min-width: 10rem;
-        min-height: 3.125rem;
+        font-size: 3rem;
+    }
+    @media (min-width: 880px) {
+        font-size: 4rem;
+    }
+    @media (min-width: 1100px) {
+        font-size: 5rem;
+    }
+    @media (min-width: 1400px) {
         font-size: 8rem;
-        padding: 4rem 5.5rem;
     }
 `;
 

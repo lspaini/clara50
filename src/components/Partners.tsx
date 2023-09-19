@@ -23,6 +23,16 @@ const Logo = styled(GatsbyImage)`
 & img{
   filter: grayscale(100%);
 }
+& img {
+  max-width: 100%;
+  height: auto;
+}
+`;
+
+// Add this to your styled components
+const StyledImg = styled.img`
+  width: 100%; // Responsive width
+  height: auto; // Maintain aspect ratio
 `;
 
 
@@ -48,7 +58,7 @@ const Partners: React.FC = ({ }) => {
           const isSVG = edge.node.publicURL.endsWith('.svg');
 
           return isSVG ? (
-            <img key={index} src={edge.node.publicURL} alt={`Partner ${index + 1}`} />
+            <StyledImg key={index} src={edge.node.publicURL} alt={`Partner ${index + 1}`} />
           ) : (
             image ? <Logo key={index} image={image} alt={`Partner ${index + 1}`} /> : null
           );
