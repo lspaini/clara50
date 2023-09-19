@@ -35,8 +35,8 @@ const Landing: React.FC = () => {
   
   // Zoom Options
   const initialBgSize = 250;
-  const lowPercentageThreshold = 20;
-  const highPercentageThreshold = 60;
+  const startResizeScrollPercent = 20;
+  const endResizeScrollPercent = 60;
 
   const [minHeight, setMinHeight] = useState<number | null>(null);
   const [minWidth, setMinWidth] = useState<number | null>(null);
@@ -59,13 +59,13 @@ const Landing: React.FC = () => {
     // Helper function to adjust background size
     const adjustBgSize = (percentage:number) => {
       let newSize;
-      if (percentage < lowPercentageThreshold) {
-        newSize = initialBgSize - (percentage / lowPercentageThreshold) * (initialBgSize - minBgSize);
+      if (percentage < startResizeScrollPercent) {
+        newSize = initialBgSize - (percentage / startResizeScrollPercent) * (initialBgSize - minBgSize);
         return Math.max(newSize, minBgSize);
-      } else if (percentage >= lowPercentageThreshold && percentage < highPercentageThreshold) {
+      } else if (percentage >= startResizeScrollPercent && percentage < endResizeScrollPercent) {
         return minBgSize;
       } else {
-        newSize = minBgSize + ((percentage - highPercentageThreshold) / (100 - highPercentageThreshold)) * (initialBgSize - minBgSize);
+        newSize = minBgSize + ((percentage - endResizeScrollPercent) / (100 - endResizeScrollPercent)) * (initialBgSize - minBgSize);
         return Math.min(newSize, initialBgSize);
       }
     };
