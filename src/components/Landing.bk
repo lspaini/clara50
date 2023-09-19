@@ -1,0 +1,174 @@
+import React, { useEffect, useLayoutEffect, useState } from "react";
+import Full from "../images/full_high.png";
+import {
+  LandingContainer,
+  LandingImageContainer,
+  TitleContainer,
+  Title,
+} from "../styles/LandingStyles";
+
+const Landing: React.FC = () => {
+  /**
+   * Checks if the current environment is development.
+   * @returns {boolean} Returns true if the current environment is development, otherwise false.
+   */
+  const isDevelopment = process.env.NODE_ENV === "development";
+
+  // Zoom/Scrolling Options
+  const initialBgSize = 250;
+  const startResizeScrollPercent = 20;
+  const endResizeScrollPercent = 60;
+
+  const [minHeight, setMinHeight] = useState<number | null>(null);
+  const [minWidth, setMinWidth] = useState<number | null>(null);
+
+  const [bgSize, setBgSize] = useState<number | null>(null);
+  const [bgPosY, setBgPosY] = useState("100%");
+
+  const [minBgSize, setMinBgSize] = useState(100);
+
+  if (isDevelopment)
+    console.log({ minHeight, minWidth, bgSize, bgPosY, minBgSize });
+
+  /**
+   * Returns the aspect ratio of an image given its source URL.
+   * @param src - The source URL of the image.
+   * @returns A promise that resolves with the aspect ratio of the image.
+   */
+  const getImageAspectRatio = (src: string): Promise<number> => {
+    if (isDevelopment) console.log("getImageAspectRatio()");
+    return new Promise((resolve, reject) => {
+      const img = new Image();
+      img.src = src;
+      img.onload = () => {
+        const aspectRatio = img.width / img.height;
+        resolve(aspectRatio);
+      };
+      img.onerror = reject;
+    });
+  };
+
+  /**
+   * Adjusts the size of the background based on a percentage value.
+   * @param percentage - The percentage value to adjust the background size.
+   * @returns The adjusted size of the background.
+   */
+  const adjustBgSize = (percentage: number): number => {
+    if (isDevelopment) console.log("adjustBgSize()");
+    const sizeDifference = initialBgSize - minBgSize;
+
+    // if (isDevelopment) console.log(`Size Difference: ${sizeDifference}`);
+
+    if (percentage < startResizeScrollPercent) {
+      const proportion = percentage / startResizeScrollPercent;
+      const sizeAdjustment = proportion * sizeDifference;
+      const newSize = initialBgSize - sizeAdjustment;
+
+      return Math.max(newSize, minBgSize);
+    }
+
+    if (
+      percentage >= startResizeScrollPercent &&
+      percentage < endResizeScrollPercent
+    ) {
+      return minBgSize;
+    }
+
+    const proportion =
+      (percentage - endResizeScrollPercent) / (100 - endResizeScrollPercent);
+    const sizeAdjustment = proportion * sizeDifference;
+    const newSize = minBgSize + sizeAdjustment;
+
+    return Math.min(newSize, initialBgSize);
+  };
+
+  /**
+   * Handles the scroll event and updates the background size and position based on the scroll percentage.
+   */
+  const handleScroll = () => {
+    if (isDevelopment) console.log("handleScroll()");
+
+    // Calculate Scroll Height and Scroll Percentage
+    const scrollHeight = document.documentElement.scrollHeight;
+    const scrollPercentage = (window.scrollY / scrollHeight) * 100;
+
+    // Log scroll height and scroll percentage
+    if (isDevelopment) console.log(`Scroll Height: ${scrollHeight}`);
+    if (isDevelopment) console.log(`Scroll Percentage: ${scrollPercentage}%`);
+
+    // Update minHeight and minWidth based on the current scroll position
+    setMinHeight(window.innerHeight);
+    setMinWidth(window.innerWidth);
+
+    // Set background size and position
+    const newBgSize = adjustBgSize(scrollPercentage);
+    const newBgPosY = 100 - scrollPercentage;
+  
+    setBgSize(newBgSize);
+    setBgPosY(`${newBgPosY}%`);
+    // Log final sizes and positions
+    if (isDevelopment) console.log(`New Background Size: ${newBgSize}%`);
+    if (isDevelopment) console.log(`New Background Y-Position: ${newBgPosY}%`);
+  };
+
+  /**
+   * Calculates the minimum size for the background image based on the aspect ratio of the window and the image.
+   */
+  const setupBackgroundSize = async () => {
+    try {
+    const aspectRatioWindow = window.innerWidth / window.innerHeight;
+      const aspectRatioImage = await getImageAspectRatio(Full);
+      
+      const minCoverSize =
+      aspectRatioWindow > aspectRatioImage
+      ? (window.innerHeight / window.innerWidth) * aspectRatioImage * 250
+      : (window.innerWidth / window.innerHeight / aspectRatioImage) * 450;
+      
+      if (isDevelopment) console.log(`Min Cover Size: ${minCoverSize}`);
+      
+      setMinBgSize(minCoverSize);
+      setBgSize(minCoverSize);
+    } catch (error) {
+      console.error("Failed to get image aspect ratio:", error);
+    }
+  };
+
+  useEffect(() => {
+    setupBackgroundSize();
+  }, []);
+
+  useLayoutEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("resize", handleScroll);
+    window.addEventListener("resize", setupBackgroundSize);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("resize", handleScroll);
+      window.removeEventListener("resize", setupBackgroundSize);
+    };
+  }, [bgSize, minHeight, minWidth, minBgSize]);
+
+  return (
+    <LandingContainer>
+      <LandingImageContainer
+        image={Full}
+        style={{ backgroundSize: `${bgSize}%`, backgroundPositionY: bgPosY }}
+      />
+      <TitleContainer>
+        <Title bottom={0}>Clarastrasse 50</Title>
+      </TitleContainer>
+      <TitleContainer>
+        <Title bottom={-2500}>Gastro</Title>
+      </TitleContainer>
+      <TitleContainer>
+        <Title bottom={-3800}>Coworking</Title>
+      </TitleContainer>
+      <TitleContainer>
+        <Title bottom={-5000}>Wohnungen</Title>
+      </TitleContainer>
+    </LandingContainer>
+  );
+};
+
+export default Landing;
