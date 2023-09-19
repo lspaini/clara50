@@ -78,10 +78,6 @@ const adjustImageSize = (percentage: number): number => {
   
 /**
  * Adjusts the background Y-position based on the scroll percentage.
- * 
- * This function modifies the background Y-position to create a scroll effect.
- * The Y-position starts from 100 (fully visible) and decreases to 0 (top of the image at the viewport's top edge)
- * as the user scrolls down the page.
  */
 const adjustImagePosY = (percentage: number): number => {
   // Calculate new Y-position as a percentage
@@ -97,7 +93,6 @@ const adjustImagePosY = (percentage: number): number => {
    */
   const handleScroll = () => {
 
-  
     // Calculate Scroll Height and Scroll Percentage
     const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
     const scrollPercentage = (window.scrollY / scrollHeight) * 100;
@@ -112,9 +107,13 @@ const adjustImagePosY = (percentage: number): number => {
   useEffect(() => {
     const init = async () => {
       try {
-        // Check if running in browser environment
+        // Check if running in a browser environment
         if (typeof window !== 'undefined') {
           
+          // Event listeners for 'resize' and 'scroll'
+          window.addEventListener('resize', handleScroll);
+          window.addEventListener('scroll', handleScroll);
+  
           // Get the aspect ratio of the window
           const aspectRatioWindow = window.innerWidth / window.innerHeight;
     
@@ -132,7 +131,7 @@ const adjustImagePosY = (percentage: number): number => {
             ? (window.innerHeight / window.innerWidth) * aspectRatioImage * 350
             : (window.innerWidth / window.innerHeight) / aspectRatioImage * 150;
   
-          console.log("minCoverSize: ", minCoverSize);
+            if (isDevelopment) console.log("minCoverSize: ", minCoverSize);
           
           // Update the state with the new minimum background size
           setMinImageSize(minCoverSize);
@@ -141,20 +140,23 @@ const adjustImagePosY = (percentage: number): number => {
         // Log any errors encountered while fetching the image aspect ratio
         console.error("Error getting image: ", error);
       }
-  
-      // Your existing event listeners
-      window.addEventListener('scroll', handleScroll);
-  
-      // Cleanup function
-      return () => {
-        window.removeEventListener('scroll', handleScroll);
-      };
     };
   
     // Call the inner async function
     init();
+  
+    // Cleanup function
+    return () => {
+      
+      // Only execute if window object exists
+      if (typeof window !== 'undefined') {
+        window.removeEventListener('scroll', handleScroll);
+        window.removeEventListener('resize', handleScroll);
+      }
+    };
     
   }, [imageSize, minHeight, minWidth]);
+  
   
   
   
