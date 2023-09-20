@@ -17,7 +17,19 @@ export const TitleContainer = styled.div`
     background: white;
     color: black;
     padding: 3rem;
+    @media (min-width: 576px) {
+        font-size: 3rem;
+        max-width: 1200px;
+    }
 `;
+
+export const TextContainer = styled.div`
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    `;
 
 
 
@@ -36,7 +48,8 @@ export const MainTitleContainer = styled.div`
 export const Title = styled.h1<{ bottom: number}>`
     bottom: ${(props) => props.bottom}px;
     box-sizing: border-box;
-    font-size: 1rem;
+    font-weight: 200;
+    font-size: 2rem;
     display: flex;
     align-items: center;
     justify-content: center;  
@@ -44,7 +57,7 @@ export const Title = styled.h1<{ bottom: number}>`
     letter-spacing: 0.1rem;
     flex-direction: column;
     @media (min-width: 375px) {
-        font-size: 2rem;
+        font-size: 4rem;
     }
     /* @media (min-width: 576px) {
         min-width: 10rem;
@@ -56,16 +69,13 @@ export const MainTitle = styled.h1<{ bottom: number}>`
     bottom: ${(props) => props.bottom}px;
     padding: 10%;
     box-sizing: border-box;
-    font-size: 1rem;
+    font-size: 2rem;
     display: flex;
     align-items: center;
     justify-content: center;  
     display: flex;
     letter-spacing: 0.1rem;
     flex-direction: column;
-    @media (min-width: 375px) {
-        font-size: 2rem;
-    }
     @media (min-width: 576px) {
         font-size: 3rem;
     }
@@ -81,13 +91,15 @@ export const MainTitle = styled.h1<{ bottom: number}>`
 `;
 
 export const TextBox = styled.div`
-    max-width: 650px;
     margin-top: 2rem;
     padding: 1rem;
     box-sizing: border-box;
     font-family: 'Gilroy', sans-serif;
     font-size: 1.25rem;
     line-height: 1.25;
+    @media (min-width: 576px) {
+        max-width: 650px;
+    }
     @media (min-width: 48rem) {
     text-align: justify;
     line-height: 1.5;

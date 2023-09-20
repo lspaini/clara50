@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Full from '../images/full_high.png';
-import { LandingContainer, LandingImageContainer, TitleContainer, Title, TextBox, MainTitle, MainTitleContainer } from '../styles/LandingStyles';
+import { LandingContainer, LandingImageContainer, TitleContainer, Title, TextBox, MainTitle, MainTitleContainer, TextContainer } from '../styles/LandingStyles';
 
 const isDevelopment = process.env.NODE_ENV === "development";
 
@@ -20,16 +20,16 @@ const getImageAspectRatio = (src: string): Promise<number> => {
 };
 
 // get aspect ratio of the viewport (window), even when resized, and put it in the console.
-window.addEventListener('resize', () => {
-  const aspectRatio = window.innerWidth / window.innerHeight;
-  if (isDevelopment) console.log("Viewport AR: ", aspectRatio);
-});
+// window.addEventListener('resize', () => {
+//   const aspectRatio = window.innerWidth / window.innerHeight;
+//   if (isDevelopment) console.log("Viewport AR: ", aspectRatio);
+// });
 
 // get aspect ratio of the viewport (window), even when resized, and put it in the console.
-window.addEventListener('scroll', () => {
-  const aspectRatio = window.innerWidth / window.innerHeight;
-  if (isDevelopment) console.log("Viewport AR: ", aspectRatio);
-});
+// window.addEventListener('scroll', () => {
+//   const aspectRatio = window.innerWidth / window.innerHeight;
+//   if (isDevelopment) console.log("Viewport AR: ", aspectRatio);
+// });
 
 
 
@@ -169,6 +169,7 @@ const adjustImagePosY = (percentage: number): number => {
           <MainTitleContainer>
             <MainTitle bottom={0}>Clarastrasse 50</MainTitle>
           </MainTitleContainer>
+          <TextContainer>
           <TitleContainer>
             <Title bottom={0} >Gastro</Title>
             <TextBox><p>Unser neuestes Immobilienprojekt in Basel ist nicht nur ein Wohnraum, sondern auch ein kulinarisches Paradies. Die Gastronomie-Einrichtungen hier sind sorgfältig ausgewählt, um eine breite Palette von Geschmackserlebnissen zu bieten. Von authentischer Italienischer Küche bis zu innovativen Fusion-Restaurants ist alles vertreten. Zudem setzen unsere Lokale auf Nachhaltigkeit und lokale Produkte, um nicht nur den Gaumen, sondern auch das Gewissen zu erfreuen. Dieses Angebot macht unser Projekt zu einer Oase für Feinschmecker und setzt neue Maßstäbe für Lebensqualität.</p></TextBox>
@@ -181,6 +182,7 @@ const adjustImagePosY = (percentage: number): number => {
             <Title bottom={-5000}>Wohnungen</Title>
             <TextBox><p>Die Wohnungen in unserem neuesten Immobilienprojekt verkörpern den Inbegriff von Luxus und Komfort. Mit einer durchdachten Raumgestaltung und hochwertigen Materialien setzen wir neue Standards für modernes Wohnen. Jede Einheit verfügt über großzügige Fensterfronten, die für eine natürliche Lichtdurchflutung sorgen, und moderne Annehmlichkeiten wie Smart-Home-Technologie. Die offenen Grundrisse bieten Flexibilität und Raum für persönliche Entfaltung, während private Balkone einen atemberaubenden Blick auf Basel bieten. Hier vereinen wir Stil, Funktionalität und Lebensqualität in einem außergewöhnlichen Wohnkonzept.</p></TextBox>
           </TitleContainer>
+          </TextContainer>
       </LandingContainer>
   );
 };
