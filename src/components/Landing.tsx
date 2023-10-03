@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import Full from '../images/full_high.png';
+import Full from '../images/full.png';
 import { LandingContainer, LandingImageContainer, TitleContainer, Title, TextBox, MainTitle, MainTitleContainer, TextContainer } from '../styles/LandingStyles';
 
 const isDevelopment = process.env.NODE_ENV === "development";
@@ -158,11 +158,6 @@ const adjustImagePosY = (percentage: number): number => {
     
   }, [imageSize, minHeight, minWidth]);
   
-  
-  
-  
-  
-
   return (
     <LandingContainer>
       <LandingImageContainer image={Full} style={{ backgroundSize: imageSize, backgroundPositionY: imagePosY }} />
@@ -171,16 +166,17 @@ const adjustImagePosY = (percentage: number): number => {
           </MainTitleContainer>
           <TextContainer>
           <TitleContainer>
-            <Title bottom={0} >Gastro</Title>
-            <TextBox><p>Unser neuestes Immobilienprojekt in Basel ist nicht nur ein Wohnraum, sondern auch ein kulinarisches Paradies. Die Gastronomie-Einrichtungen hier sind sorgfältig ausgewählt, um eine breite Palette von Geschmackserlebnissen zu bieten. Von authentischer Italienischer Küche bis zu innovativen Fusion-Restaurants ist alles vertreten. Zudem setzen unsere Lokale auf Nachhaltigkeit und lokale Produkte, um nicht nur den Gaumen, sondern auch das Gewissen zu erfreuen. Dieses Angebot macht unser Projekt zu einer Oase für Feinschmecker und setzt neue Maßstäbe für Lebensqualität.</p></TextBox>
+            <Title bottom={0} >Innovative Gastronomie</Title>
+            <TextBox><p>In enger Zusammenarbeit mit Talenten aus der Basler Gastroszene wollen wir diesen Teil der Clarastrasse in einen lebendigen Treffpunkt verwandeln. Wir werden fortlaufend experimentieren, um einen Ort zu schaffen, der zum Verweilen einlädt.</p></TextBox>
           </TitleContainer>
           <TitleContainer>
-            <Title bottom={-3800} >Coworking</Title>
-            <TextBox><p>Unser Immobilienprojekt beherbergt nicht nur exquisite Gastronomie, sondern auch modernste Coworking-Spaces. Diese Bereiche sind so konzipiert, dass sie maximale Produktivität und Kreativität fördern. Mit High-Speed-Internet, ergonomischen Möbeln und vielfältigen Arbeitsbereichen, die sowohl Konzentration als auch Kollaboration ermöglichen, setzen wir neue Standards in der modernen Arbeitswelt. Ob Freelancer, Start-up oder etabliertes Unternehmen, unser Coworking-Space bietet die ideale Umgebung für jeden, der nach Exzellenz strebt. Ein Ort, an dem Arbeit nicht nur erledigt wird, sondern auch inspiriert.</p></TextBox>
+            <Title bottom={-3800} >Moderner Co-Working Space</Title>
+            <TextBox><p>Für alle, die das Konzept "alleine, doch gemeinsam" beim Arbeiten schätzen, bieten wir Arbeitstische in unserem Co-Working-Space an. Diesen Raum gestalten wir in enger Zusammenarbeit mit den zukünftigen Nutzenden, um eine Arbeitsumgebung aufzubauen, die Produktivität und Gemeinschaft fördert.
+</p></TextBox>
           </TitleContainer>
           <TitleContainer>
-            <Title bottom={-5000}>Wohnungen</Title>
-            <TextBox><p>Die Wohnungen in unserem neuesten Immobilienprojekt verkörpern den Inbegriff von Luxus und Komfort. Mit einer durchdachten Raumgestaltung und hochwertigen Materialien setzen wir neue Standards für modernes Wohnen. Jede Einheit verfügt über großzügige Fensterfronten, die für eine natürliche Lichtdurchflutung sorgen, und moderne Annehmlichkeiten wie Smart-Home-Technologie. Die offenen Grundrisse bieten Flexibilität und Raum für persönliche Entfaltung, während private Balkone einen atemberaubenden Blick auf Basel bieten. Hier vereinen wir Stil, Funktionalität und Lebensqualität in einem außergewöhnlichen Wohnkonzept.</p></TextBox>
+            <Title bottom={-5000}>Mehr Wohnungen</Title>
+            <TextBox><p>Wir erweitern den Wohnraum (+118%) und erhöhen die Zahl der Wohnungen von vier auf 13 in verschiedenen Grössen. Mit offenen Grundrissen, grosszügigem Stauraum und modernster Haustechnik schaffen wir ein komfortables Ambiente für die Bewohner:innen.</p></TextBox>
           </TitleContainer>
           </TextContainer>
       </LandingContainer>

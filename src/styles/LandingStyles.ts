@@ -14,7 +14,7 @@ export const TitleContainer = styled.div`
     align-items: center;
     margin-bottom: 100vh;
     z-index: 1;
-    background: white;
+    background: ${(props) => props.theme.colors.primaryBg};
     color: black;
     padding: 3rem;
     @media (min-width: 576px) {
@@ -59,11 +59,11 @@ export const Title = styled.h1<{ bottom: number}>`
     @media (min-width: 375px) {
         font-size: 4rem;
     }
-    /* @media (min-width: 576px) {
+    @media (min-width: 576px) {
         min-width: 10rem;
         min-height: 3.125rem;
         font-size: 3rem;
-    } */
+    }
 `;
 export const MainTitle = styled.h1<{ bottom: number}>`
     bottom: ${(props) => props.bottom}px;
@@ -95,7 +95,7 @@ export const TextBox = styled.div`
     padding: 1rem;
     box-sizing: border-box;
     font-family: 'Gilroy', sans-serif;
-    font-size: 1.25rem;
+    font-size: 2rem;
     line-height: 1.25;
     @media (min-width: 576px) {
         max-width: 650px;

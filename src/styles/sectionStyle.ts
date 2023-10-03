@@ -91,7 +91,6 @@ display: flex;
 flex-direction: ${props => props.reverse ? 'column-reverse' : 'column'};
 box-sizing: border-box;
 width: 100%;
-/* background: blue; */
 @media (min-width: 48rem) {
   display: grid;
   grid-template-columns: repeat(2, 1fr);

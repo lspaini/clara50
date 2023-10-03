@@ -6,13 +6,13 @@ const GlobalStyle = createGlobalStyle`
   @font-face {
     font-family: 'Gilroy';
     src: url(${GilroyFontExtraBold}) format('opentype');  // 'opentype' for .otf files
-    font-weight: 800;  // Extra bold
+    font-weight: 800;
     font-style: normal;
   }
   @font-face {
     font-family: 'Gilroy';
     src: url(${GilroyFontLight}) format('opentype');  // 'opentype' for .otf files
-    font-weight: 300;  // Light
+    font-weight: 300;
     font-style: normal;
   }
   html, body, #root {
@@ -21,8 +21,6 @@ const GlobalStyle = createGlobalStyle`
     width: 100%;
     margin: 0;
     padding: 0;
-    display:grid;
-    align-items: center;
     scroll-behavior: smooth;
   }
   h1, h2, h3, h4, h5, h6, p {
