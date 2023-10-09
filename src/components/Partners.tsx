@@ -29,10 +29,9 @@ const Logo = styled(GatsbyImage)`
 }
 `;
 
-// Add this to your styled components
 const StyledImg = styled.img`
-  width: 100%; // Responsive width
-  height: auto; // Maintain aspect ratio
+  width: 100%;
+  height: auto; 
 `;
 
 

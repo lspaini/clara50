@@ -54,7 +54,7 @@ margin-bottom: 1rem;
 }
 `;
 
-export const SectionTitle = styled.h1`
+export const SectionTitle = styled.h2`
 font-family: 'Gilroy', sans-serif;
 text-transform: uppercase;
 font-weight: 200;

@@ -45,11 +45,10 @@ export const MainTitleContainer = styled.div`
     margin-bottom: 100vh;
 `;
 
-export const Title = styled.h1<{ bottom: number}>`
+export const Title = styled.h2<{ bottom: number}>`
     bottom: ${(props) => props.bottom}px;
     box-sizing: border-box;
     font-weight: 200;
-    font-size: 2rem;
     display: flex;
     align-items: center;
     justify-content: center;  

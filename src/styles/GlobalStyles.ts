@@ -28,5 +28,8 @@ const GlobalStyle = createGlobalStyle`
     padding: 0;
     font-family: 'Gilroy', sans-serif;
   }
+  h2 {
+  font-size: 2rem;
+  }
 `
 export default GlobalStyle;
